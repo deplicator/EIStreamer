@@ -1,3 +1,4 @@
+__NOTOC__
 ==Description==
 Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 
@@ -23,13 +24,13 @@ Started about section.
 
 Added a footer, if I have a credit section be sure to add http://www.cssstickyfooter.com.
 
--known bugs for today
+Today's known bugs!
 * episode transcript link continues to add li elements
 * when on help or about page I should disable menu items
 * only works in Chrome
 
 
-==Ideas==
+==General Notes==
 * more intuitive menu
 ** popup instructions for manual input (reference bmrcalc)
 ** Better way to handle manual input (look for comment in ieplay.js)
