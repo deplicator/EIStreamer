@@ -1,16 +1,37 @@
-Description
+==Description==
 Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 
-Drawbacks
-Parses info from official website, so if they change the site layout it will no longer function as expected.
+==Work Log==
+===February 9, 2013===
+A lot of cosmetic work today, got a great deal of the default.css figured out.
 
-To do
+Cleaned up the left side menu. Added toggle for transcript and help, also added basic JavaScript function to swap between them in the main display area. It would be neat if this was a graphical toggle switch and if the main display area faded in and out. Will add this if time.
+
+Simplified the auto play area, added a check box for "remembered". If checked it will make a cookie when an episode is done playing and not play that episode again on any of the auto play options. Still need to add the cookie code.
+
+Added html for keyword and share link section. The share link code works (uses URL), but no keyword code yet. Would like to add an auto select to the share link for easier copy and paste.
+
+Added Official info links at end of left side menu. One to the Engine's website, the other will take the user to the official Engine's transcript for the current episode.
+
+Wrote up most of the help section, even added a bit of JavaScript to make the help section's heights match what they're describing (/scripts/help.js).
+
+Started working on some cross browser support (all testing to this point has been Chrome). Lots of work to do here. I  also learned Firefox doesn't support MP3--who knew? Only options are third party plugins or converting the audio to ogg. I knew IE was going to be a problem from the beginning, but I didn't realize versions less than 10 don't seem to support the audio tag. Simple solution might be to just make it only officially support IE10.
+
+Did some experimenting with javascript versions of play/pause. In accordance with the "don't be afraid of frameworks" learning objective I've elected to use jPlayer for cross browser support. Haven't done anything with this yet.
+
+Started about section.
+
+Added a footer, if I have a credit section be sure to add http://www.cssstickyfooter.com.
+
+-known bugs for today
+* episode transcript link continues to add li elements
+* when on help or about page I should disable menu items
+* only works in Chrome
+
+
+==Ideas==
 * more intuitive menu
-** check box for continuous play?
 ** popup instructions for manual input (reference bmrcalc)
-** stop playing after last episode
-** Change random to not play the same episode twice (cookies)
-** cookie to continue where left off
 ** Better way to handle manual input (look for comment in ieplay.js)
 
 * mobile
@@ -19,42 +40,15 @@ To do
 ** change layout by screen width to fit transcript
 
 * PHP script to get episode titles
-** list of episodes with title - http://www.uh.edu/engines/keywords.htm
+** list of episodes with title and keywords - http://www.uh.edu/engines/keywords.htm
 
 * make it pretty(add better css styling)
 ** make use of free icons
 
 * make playlist by keyword
-** how do I even parse keywords?
 ** search by keyword
-** list of keywords
+** list of keywords (tag cloud?)
 
 * Localize option - this would somewhat fix dependency on uh.edu
 ** automated and/or manual?
 ** mysql or just files?
-
-* make episodes linkable
-** Possibly through url parameters
-** .htaccess?
-
-
-==Work Log==
-February 9
-Mostly cosmetic work today, got a great deal of the default.css worked out.
-Cleaned up the left side menu. Added toggle for transcript and help, also added basic JavaScript function to swap between them in the main display area. It would be neat if this was a graphical toggle switch and if the main display area faded in and out. Will add this if time.
-Simplified the auto play area, added a check box for "remembered". If checked it will make a cookie when an episode is done playing and not play that episode again on any of the auto play options. Still need to add the cooliek code.
-Added html for keyword and share link section. The share link code works (uses URL), but no keyword code yet. I would like to add an auto select to the share link for easier copy and paste.
-Added Official info links at end of left side menu. One to the Engine's website, the other will take the user to the official Engine's transcript for the current episode.
-Wrote up most of the help section, even added a bit of JavaScript to make the help section's heights match what they're describing.
-Started working on some cross browser support (all testing ot this point has been Chrome)
-Today I learned Firefox doesn't support MP3--who knew? Only options are third party plugins or converting the audio to ogg.
-I knew IE was going to be a problem from the beginning, but I didn't realize versions >10 it flat didsn't support the audio tag. Simple solution might be to just make it only officially support IE10.
-Did some experimenting with javascript versions of play/pause
-Started about page.
-In accordance with the "don't be afraid of frameworks" learning objective I've elected to use jPlayer for cross browser support.
-footer work, if I have a credit section be sure to add http://www.cssstickyfooter.com
-
--known bugs for today
-* episode transcript link continues to add li elements
-* when on help or about page I should disable menu items
-* only works in Chrome
