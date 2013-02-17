@@ -1,15 +1,6 @@
 var newest = "";
-/*
-$('#testplay').click(function() {
-	if ($(this).html() == "Play") {
-		$('#player').trigger('play');
-		$(this).html('Pause');
-	} else {
-		$('#player').trigger('pause');
-		$(this).html('Play');
-	}
-});*/
 
+//Player
 	$("#jquery_jplayer_1").jPlayer({
 		swfPath: "http://www.jplayer.org/latest/js/Jplayer.swf",
 		supplied: "mp3",
@@ -112,7 +103,6 @@ function playPrevious() {
     var previous = parseInt($('#manual').val()) - 1;
     updateDisplay(previous);
 	$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + previous + '_64k.mp3' });
-	//$('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + previous + '_64k.mp3" type="audio/mpeg"/>');
     buttonCheck();
 }
 
@@ -120,7 +110,6 @@ function playNext() {
     var next = parseInt($('#manual').val()) + 1;
     updateDisplay(next);
 	$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + next + '_64k.mp3' });
-	//$('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + next + '_64k.mp3" type="audio/mpeg"/>');
     buttonCheck();
 }
 
@@ -128,32 +117,31 @@ function playRandom() {
     var randomEpisode = Math.floor(Math.random()*newest);
     updateDisplay(randomEpisode);
 	$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + randomEpisode + '_64k.mp3' });
-    //$('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + randomEpisode + '_64k.mp3" type="audio/mpeg"/>');
     buttonCheck();
 }
 
 function playAsending() {
-    $('#player').attr("autoplay", true)
+    //$('#player').attr("autoplay", true)
     updateDisplay(1);
-    $('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng1_64k.mp3" type="audio/mpeg"/>');
-    $('#player').on("ended", playNext);
+    //$('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng1_64k.mp3" type="audio/mpeg"/>');
+    //$('#player').on("ended", playNext);
     buttonCheck();
 }
 
 function playDescending() {
-    $('#player').attr("autoplay", true)
+    //$('#player').attr("autoplay", true)
     updateDisplay(newest);
-    $('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + newest + '_64k.mp3" type="audio/mpeg"/>');
-    $('#player').on("ended", playPrevious);
+    //$('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + newest + '_64k.mp3" type="audio/mpeg"/>');
+    //$('#player').on("ended", playPrevious);
     buttonCheck();
 }
 
 function playContinuousRandom() {
-    $('#player').attr("autoplay", true)
+    //$('#player').attr("autoplay", true)
     var randomEpisode = Math.floor(Math.random()*newest);
     updateDisplay(randomEpisode);
-    $('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + randomEpisode + '_64k.mp3" type="audio/mpeg"/>');
-    $('#player').on("ended", playRandom);
+    //$('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + randomEpisode + '_64k.mp3" type="audio/mpeg"/>');
+    //$('#player').on("ended", playRandom);
     buttonCheck();
 }
 
@@ -164,7 +152,7 @@ $('#manual').keyup(function() {
         updateDisplay(manualinput.substr(0,3)); //Handle this better
         alert("out of range");
     } else {
-        $('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng' + manualinput + '_64k.mp3" type="audio/mpeg"/>');
+		$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + manualinput + '_64k.mp3' });
         updateDisplay(manualinput);
     }
     buttonCheck();
