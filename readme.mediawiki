@@ -21,7 +21,7 @@ Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 ===Februrary 16, 2013===
 Now has cross browser support through use of jPlayer. Firefox still needs Adobe Flash because it doesn't support mp3, but it works. It's also been tested in IE10 and IE9, but doesn't work in earlier versions.
 
-Didn't fix anything today, but I did create some slopy code in eistreamer.js getting jPlayer to work. Add code clean up to the todo list.
+Didn't fix anything today, but I did create some slopy code in eistreamer.js and index.php getting jPlayer to work. Add code clean up to the todo list.
 
 ===February 9, 2013===
 A lot of cosmetic work today, got a great deal of the default.css figured out.
