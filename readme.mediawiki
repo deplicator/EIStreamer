@@ -2,7 +2,27 @@ __NOTOC__
 ==Description==
 Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 
+
+
+
+==Loose Time Table==
+{| class="wikitable"
+|-
+| February || Basic website that can play episodes with cross browser support.
+|-
+| March || Advanced interface features; cookies and help section.
+|-
+|| April || Advanced back end features; keyword support, possible localization of content.
+|-
+| mid-May || Data validation, bug checking and mobile support.
+|}
+
 ==Work Log==
+===Februrary 16, 2013===
+Now has cross browser support through use of jPlayer. Firefox still needs Adobe Flash because it doesn't support mp3, but it works. It's also been tested in IE10 and IE9, but doesn't work in earlier versions.
+
+Didn't fix anything today, but I did create some slopy code in eistreamer.js getting jPlayer to work. Add code clean up to the todo list.
+
 ===February 9, 2013===
 A lot of cosmetic work today, got a great deal of the default.css figured out.
 
@@ -29,8 +49,7 @@ Today's known bugs!
 * when on help or about page I should disable menu items
 * only works in Chrome
 
-
-==General Notes==
+==General Tasks==
 * more intuitive menu
 ** popup instructions for manual input (reference bmrcalc)
 ** Better way to handle manual input (look for comment in ieplay.js)

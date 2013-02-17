@@ -104,13 +104,26 @@ a:hover {
 	margin: 10px auto;
 }
 
-
+#autoplay {
+	width: 200px;
+}
 
 .auto-option {
 	background: whitesmoke;
 	border-bottom: 1px solid #ccc;
-	padding: 3px;
+	padding: 3px 12px;
 }
+
+.auto-option:hover {
+	background: yellow;
+}
+
+.auto-selected {
+	background: #D8DFE6;
+	font-weight: 700;
+}
+
+
 
 #track {
 	font-size: 12px;

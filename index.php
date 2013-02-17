@@ -10,6 +10,7 @@
     <title>Engines of Our Ingenuity Streamer</title>
     <script src="scripts/jquery.min.js"></script><!--jQuery 1.9.1-->
 	<script src="scripts/jquery.jplayer.min.js"></script><!--jPlayer 2.2.0-->
+	<script src="scripts/jquery.cookie.js"></script><!--jQuery Cookie Plugin v1.3.1 -->
     <link rel="stylesheet" href="css/default.css">
 </head>
 
@@ -27,8 +28,17 @@
 			</div>
 			<div id="manualControls">
 				<h3>Manual Controls</h3>
-				<audio id="player" controls></audio>
-				<div id="testplay">Play</div>
+			
+						<p>
+						<a href="javascript:;" id="play">play</a><a href="javascript:;" id="pause">pause</a> |
+						<a href="javascript:;" id="stop">stop</a> |
+						<span id="currentTime"></span> / <span id="duration"></span>
+						</p>
+						<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+			
+			
+				
+				<!--<audio id="player" controls></audio>-->
 				<button id="previous">Previous</button>
 				<input id="manual" type="text">
 				<button id="next">Next</button>
@@ -57,7 +67,7 @@
 			</div>
 		</div>
 		<div id="message">
-			<p>Error Message: Still working out bugs. What does work, works best in <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.</p>
+			<p>Error Message: Still working out bugs.</p>
 		</div>
 		
 		<div id="transcript" class="mainViewArea"></div>
@@ -98,7 +108,8 @@
 		<p><a href="http://www.uh.edu/engines/">The Engine's of Our Inginuity</a> might be used with persmission from the <a href="http://uh.edu">University of Houston</a> (still waiting on a response).</p>
 	</footer>
     
-    <script src="scripts/eiplay.js"></script>
-	<script src="scripts/help.js"></script>
+    <script src="scripts/eistreamer.js"></script>
+	<script src="scripts/eistreamer.cookie.js"></script>
+	<script src="scripts/eistreamer.help.js"></script>
 </body>
 </html>
