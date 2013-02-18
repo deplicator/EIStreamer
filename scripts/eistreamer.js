@@ -1,6 +1,5 @@
 var newest = "";
 
-//Player
 	$("#jquery_jplayer_1").jPlayer({
 		swfPath: "http://www.jplayer.org/latest/js/Jplayer.swf",
 		supplied: "mp3",
@@ -9,6 +8,7 @@ var newest = "";
 			play: "#play",
 			pause: "#pause",
 			stop: "#stop",
+			seekBar: "#seekbar",
 			mute: "#mute",
 			unmute: "#unmute",
 			currentTime: "#currentTime",
@@ -16,12 +16,12 @@ var newest = "";
 		}
 	});
 
-
-
+	
+	
 
 //Get duration of current episode.
 function episodeDuration() {
-    return document.getElementById('player').duration;
+    //return document.getElementById('player').duration;
 }
 
 //The audio for this episode is still under construction, please check back at a later date.
@@ -123,6 +123,14 @@ function playRandom() {
 function playAsending() {
     //$('#player').attr("autoplay", true)
     updateDisplay(1);
+	
+	$('#jquery_jplayer_1').jPlayer(
+		"setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng1_64k.mp3' },
+		{ ended: function() {
+			console.log("ended");
+		}}
+	).jPlayer("play");
+		
     //$('#player').html('<source src="http://www.kuhf.org/programaudio/engines/eng1_64k.mp3" type="audio/mpeg"/>');
     //$('#player').on("ended", playNext);
     buttonCheck();

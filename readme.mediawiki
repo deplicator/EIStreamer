@@ -18,6 +18,9 @@ Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 |}
 
 ==Work Log==
+===February 17, 2013===
+Added Blue Monday skin to jPlayer, in the processes I've seemed to have broken play back. 
+
 ===Februrary 16, 2013===
 Now has cross browser support through use of jPlayer. Firefox still needs Adobe Flash because it doesn't support mp3, but it works. It's also been tested in IE10 and IE9, but doesn't work in earlier versions.
 
