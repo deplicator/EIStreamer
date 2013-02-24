@@ -3,12 +3,19 @@ __NOTOC__
 Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 
 
+==Support==
+Tested to work in Internet Explorer 10 and Chrome. Does work with Internet Explorer 8, 9, and FireFox with Adobe Flash although play back may take a little longer to load.
+
+===Use===
+The Engine's of Our Inginuity is used on this project with persmission from KUHF, the University of Houston, and Dr. John Lienhard.
+
+Permission was given with the expliciet direction this project can only pull from and parse the original website. All localization options have been removed. This code has been used for educational purposes, and can be reproduced in any form without permission from the author (although it's always a nice thing to do); however, if it is going to be used in conjuction with The Enginens of Out Ingenuity, permission should be obtained from KUHF, the University of Houston, and Dr. John Lienhard.
 
 
 ==Loose Time Table==
 {| class="wikitable"
 |-
-| February || Basic website that can play episodes with cross browser support.
+| February || <strike>Basic website that can play episodes with cross browser support.</strike>
 |-
 | March || Advanced interface features; cookies and help section.
 |-
@@ -17,14 +24,32 @@ Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 | mid-May || Data validation, bug checking and mobile support.
 |}
 
+
+==Known bugs to work out==
+* Episode transcript link continues to add li elements.
+* When on help or about page menu options should be disabled.
+* Some characters display with ?'s.
+* Some episodes have a pierod after the by line.
+* Share link url doens't work.
+
+===Would be neat===
+* Force image's to scale down when too wide for page. Good example in episode 2863.
+* Disable view for stop button when nothing is playing.
+
+
 ==Work Log==
+===February 24, 2013===
+Fixed jPlayer playback, cleaned up code in index.html and eistreamer.js, also added a fair bit of comments to the latter. Fixed autoplay options, although it could use a better solution (currently uses javascript and not jPlayer).
+
+Updated jPlayer aesthetics. Modified Blue Monday <http://www.jplayer.org/latest/jPlayer.Blue.Monday.2.2.0.zip> skin css to better fit layout and to have disabled previous and next buttons options.
+
 ===February 17, 2013===
 Added Blue Monday skin to jPlayer, in the processes I've seemed to have broken play back. 
 
-===Februrary 16, 2013===
+===February 16, 2013===
 Now has cross browser support through use of jPlayer. Firefox still needs Adobe Flash because it doesn't support mp3, but it works. It's also been tested in IE10 and IE9, but doesn't work in earlier versions.
 
-Didn't fix anything today, but I did create some slopy code in eistreamer.js and index.php getting jPlayer to work. Add code clean up to the todo list.
+Didn't fix anything today, but I did create some sloppy code in eistreamer.js and index.php getting jPlayer to work. Add code clean up to the to do list.
 
 ===February 9, 2013===
 A lot of cosmetic work today, got a great deal of the default.css figured out.
@@ -39,7 +64,7 @@ Added Official info links at end of left side menu. One to the Engine's website,
 
 Wrote up most of the help section, even added a bit of JavaScript to make the help section's heights match what they're describing (/scripts/help.js).
 
-Started working on some cross browser support (all testing to this point has been Chrome). Lots of work to do here. I  also learned Firefox doesn't support MP3--who knew? Only options are third party plugins or converting the audio to ogg. I knew IE was going to be a problem from the beginning, but I didn't realize versions less than 10 don't seem to support the audio tag. Simple solution might be to just make it only officially support IE10.
+Started working on some cross browser support (all testing to this point has been Chrome). Lots of work to do here. I  also learned Firefox doesn't support MP3--who knew? Only options are third party plug-ins or converting the audio to ogg. I knew IE was going to be a problem from the beginning, but I didn't realize versions less than 10 don't seem to support the audio tag. Simple solution might be to just make it only officially support IE10.
 
 Did some experimenting with javascript versions of play/pause. In accordance with the "don't be afraid of frameworks" learning objective I've elected to use jPlayer for cross browser support. Haven't done anything with this yet.
 
@@ -47,12 +72,10 @@ Started about section.
 
 Added a footer, if I have a credit section be sure to add http://www.cssstickyfooter.com.
 
-Today's known bugs!
-* episode transcript link continues to add li elements
-* when on help or about page I should disable menu items
-* only works in Chrome
 
-==General Tasks==
+
+
+==General Notes so I don't forget==
 * more intuitive menu
 ** popup instructions for manual input (reference bmrcalc)
 ** Better way to handle manual input (look for comment in ieplay.js)
@@ -65,13 +88,6 @@ Today's known bugs!
 * PHP script to get episode titles
 ** list of episodes with title and keywords - http://www.uh.edu/engines/keywords.htm
 
-* make it pretty(add better css styling)
-** make use of free icons
-
 * make playlist by keyword
 ** search by keyword
 ** list of keywords (tag cloud?)
-
-* Localize option - this would somewhat fix dependency on uh.edu
-** automated and/or manual?
-** mysql or just files?

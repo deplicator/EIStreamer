@@ -1,5 +1,4 @@
 @import url(http://reset5.googlecode.com/hg/reset.min.css);
-@import url(jplayer.blue.monday.css);
 
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
@@ -56,6 +55,20 @@ p {
     padding: 8px 16px;
 }
 
+#transcript blockquote blockquote {
+	font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 16px;
+	margin: 0 0 0 20px;
+}
+
+#transcript * {
+	font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
 a {
 	text-decoration: none;
 	color: Steelblue;
@@ -89,6 +102,12 @@ a:hover {
 	text-align: center;
 	width: 300px;
 	margin: 0 auto;
+}
+
+#manualInput {
+	background: #eee;
+	border-top: 1px solid #ccc;
+	padding: 5px;
 }
 
 #manualControls  button,
