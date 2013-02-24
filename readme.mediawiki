@@ -2,6 +2,8 @@ __NOTOC__
 ==Description==
 Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 
+[http://geekwagon.net/projects/eistreamer Live Demo]
+
 
 ==Support==
 Tested to work in Internet Explorer 10 and Chrome. Does work with Internet Explorer 8, 9, and FireFox with Adobe Flash although play back may take a little longer to load.
