@@ -17,11 +17,11 @@ Permission was given with the expliciet direction this project can only pull fro
 ==Loose Time Table==
 {| class="wikitable"
 |-
-| February || <strike>Basic website that can play episodes with cross browser support.</strike>
+| February || Basic website that can play episodes with cross browser support.
 |-
 | March || Advanced interface features; cookies and help section.
 |-
-|| April || Advanced back end features; keyword support, possible localization of content.
+|| April || Advanced back end features; get episode title, keyword support, direct link to episode.
 |-
 | mid-May || Data validation, bug checking and mobile support.
 |}
@@ -37,9 +37,17 @@ Permission was given with the expliciet direction this project can only pull fro
 ===Would be neat===
 * Force image's to scale down when too wide for page. Good example in episode 2863.
 * Disable view for stop button when nothing is playing.
+* Have a "available in Spanish" link for episodes that have a spanish option.
 
 
 ==Work Log==
+===March 3, 2013===
+Discovered program audio is available at http://app2.kuhf.org/audio_library/engines/ and http://www.kuhf.org/programaudio/engines/. Setting up a fall back is not the worst idea.
+
+Started working on Cookies today. I opted to use the jCookie plug in for jQuery. The check box will make an empty cookie, and the remove cookies button will set it to null. Didn't see any way to actually delete the cookie.
+
+Fixed a PHP error on line 4 of index.html by adding if(!isset($_REQUEST['epi'])).
+
 ===February 24, 2013===
 Fixed jPlayer playback, cleaned up code in index.html and eistreamer.js, also added a fair bit of comments to the latter. Fixed autoplay options, although it could use a better solution (currently uses javascript and not jPlayer).
 

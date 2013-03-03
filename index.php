@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	$epi = $_REQUEST['epi'];
+	if(!isset($_REQUEST['epi'])) {
+		$epi = '';
+	} else {
+		$epi = $_REQUEST['epi'];
+	}
 	echo '<div id="data" style="display: none;">' . $epi . '</div>'
 ?>
 
@@ -76,7 +80,11 @@
 				<div id="ascending" class="auto-option">From Beginning</div>
 				<div id="descending" class="auto-option">In Reverse</div>
 				<div id="continuousRandom" class="auto-option">At Random</div>
-				<div id="track"><input type="checkbox">Remember Played</div>
+				<div id="track">
+					<input id="trackCheckbox" type="checkbox">
+					<span id="trackDescription">Remember Played</span>
+					<span id="trackRemove">Remove Cookies</span>
+				</div>
 			</div>
 			
 			<div id="keyword" class="playOptions"><!--keyword tag cloud could be cool here-->
