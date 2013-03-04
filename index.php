@@ -83,7 +83,8 @@
 				<div id="track">
 					<input id="trackCheckbox" type="checkbox">
 					<span id="trackDescription">Remember Played</span>
-					<span id="trackRemove">Remove Cookies</span>
+					<span id="trackDescription"><a href="?epi=showplayed">Show Played</a></span>
+					<span id="trackRemove"><a href="index.php">Remove Cookies</a></span>
 				</div>
 			</div>
 			
@@ -102,6 +103,7 @@
 			<div id="officialInfo">
 				<ul id="links">
 					<li><a href="http://www.uh.edu/engines/">Engine's of Our Ingenuity Website.</a></li>
+					<li id="OTLink"></li>
 				</ul>
 			</div>
 			
@@ -142,6 +144,12 @@
 		<!--About Page-->
 		<div id="about" class="mainViewArea hidden">
 			<p>about page</p>
+			<a href="index.php" id="transcriptButton">Back to Transcript</a>
+		</div>
+		
+		<!--Show Played Page-->
+		<div id="showplayed" class="mainViewArea hidden">
+			<p>Show played page.</p>
 			<a href="index.php" id="transcriptButton">Back to Transcript</a>
 		</div>
 		

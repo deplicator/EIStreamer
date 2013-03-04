@@ -53,20 +53,28 @@ function updateDisplay(num) {
     $('#episodeNum').html(num);
 	var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 	$('#shareTextbox').val(site + '/?epi=' + num)
-    $('#links').append('<li><a href="http://www.uh.edu/engines/epi'+num+'.htm">Original Transcript for this Episode</a></li>');
+	$('#OTLink').html('<a href="http://www.uh.edu/engines/epi'+num+'.htm">Original Transcript for this Episode, No.'+num+'</a>');
 }
 
 //Load's latest episode on page load or episode from URL.
-if($('#data').html() == "help") {
-	$('#help').removeClass('hidden');
-	$('#about').addClass('hidden');
-	$('#transcript').addClass('hidden');
-	$('#message').addClass('hidden');
-} else if($('#data').html() == "about") {
+if($('#data').html() == "about") {
 	$('#about').removeClass('hidden');
 	$('#help').addClass('hidden');
-	$('#transcript').addClass('hidden');
 	$('#message').addClass('hidden');
+	$('#showplayed').addClass('hidden');
+	$('#transcript').addClass('hidden');
+} else if($('#data').html() == "help") {
+	$('#about').addClass('hidden');
+	$('#help').removeClass('hidden');
+	$('#message').addClass('hidden');
+	$('#showplayed').addClass('hidden');
+	$('#transcript').addClass('hidden');
+} else if($('#data').html() == "showplayed") {
+	$('#about').addClass('hidden');
+	$('#help').addClass('hidden');
+	$('#message').addClass('hidden');
+	$('#showplayed').removeClass('hidden');
+	$('#transcript').addClass('hidden');
 } else if($('#data').html() == "") {
 	$('#data').load('scripts/get_newest_episode.php', function() {
 		newest = parseInt($('#data').html());
@@ -76,7 +84,10 @@ if($('#data').html() == "help") {
 		$('#message').removeClass('hidden');
 	});
 } else {
-	updateDisplay($('#data').html());
+	var current = parseInt($('#data').html());
+	updateDisplay(current)
+	$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + current + '_64k.mp3' });
+	buttonCheck();
 	$('#message').removeClass('hidden');
 }
 

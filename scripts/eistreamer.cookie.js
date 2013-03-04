@@ -15,7 +15,7 @@ function are_cookies_enabled() {
 }
 
 /* 
- * Checks to be sure cookies are suppoted.
+ * Checks to be sure cookies are suppoted when user checks "Remember Played".
 */
 $('#trackCheckbox:checkbox').click(function() {
 	if(!are_cookies_enabled()) {
@@ -24,28 +24,37 @@ $('#trackCheckbox:checkbox').click(function() {
 });
 
 /*
+ * Checks the "Remember Played" checkbox if the 'played' cookie is found.
+ */
+ if($.cookie('played') != null) {
+	$('#trackCheckbox').prop('checked', true);
+ }
+ 
+
+/*
  * When an episode ends, if the check box is checked, append that episode
  * number to cookie.
  */
 $('#jquery_jplayer_1 audio').on("ended", function() {
 	if ($('#trackCheckbox:checkbox').is(':checked')) {
+		var current = $('#manual').val();
 		if($.cookie('played') == null) {
-			$.cookie('played', '', {expires:365});
-			//start tracking played episodes
-
+			$.cookie('played', current, {expires:365}); //first value is always undefined, why?
 		} else { 
-			//update cookie at the end of each episode.
+			var more = $.cookie('played')
+			$.cookie('played', more + ',' + current, {expires:365});
 		}
+	}
 });
 
 
 //Remove all cookies function
 function removeAllCookies() {
 	//change this to not use confirm someday. (http://stackoverflow.com/questions/43955/changing-the-default-title-of-confirm-in-javascript)
-	var ask = confirm("Remove all cookies?");
+	var ask = confirm("Remove all cookies from this site?");
 	
 	if(ask == true) {
-		$.cookie('played', null);	
+		$.cookie('played', 'none', {expires: -1});
 	}
 }
 

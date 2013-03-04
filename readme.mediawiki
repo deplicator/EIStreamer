@@ -28,25 +28,28 @@ Permission was given with the expliciet direction this project can only pull fro
 
 
 ==Known bugs to work out==
-* Episode transcript link continues to add li elements.
 * When on help or about page menu options should be disabled.
 * Some characters display with ?'s.
 * Some episodes have a pierod after the by line.
-* Share link url doens't work.
+* Some of the pictures don't work (so far only discovered on episode 1889)
+
 
 ===Would be neat===
 * Force image's to scale down when too wide for page. Good example in episode 2863.
 * Disable view for stop button when nothing is playing.
 * Have a "available in Spanish" link for episodes that have a spanish option.
+* store recent episode number in file incase the site can't reach uh.edu.
 
 
 ==Work Log==
 ===March 3, 2013===
 Discovered program audio is available at http://app2.kuhf.org/audio_library/engines/ and http://www.kuhf.org/programaudio/engines/. Setting up a fall back is not the worst idea.
 
-Started working on Cookies today. I opted to use the jCookie plug in for jQuery. The check box will make an empty cookie, and the remove cookies button will set it to null. Didn't see any way to actually delete the cookie.
+Started working on Cookies today. I opted to use the jCookie plug in for jQuery. The site will make a cookie and append the episode number to the value after playing an episode. So far the cookie is not used for any features, like skipping episodes already played in the auto play modes.
 
 Fixed a PHP error on line 4 of index.html by adding if(!isset($_REQUEST['epi'])).
+
+Fixed bug '''Episode transcript link continues to add li elements''' and '''Share link url doens't work'''.
 
 ===February 24, 2013===
 Fixed jPlayer playback, cleaned up code in index.html and eistreamer.js, also added a fair bit of comments to the latter. Fixed autoplay options, although it could use a better solution (currently uses javascript and not jPlayer).
