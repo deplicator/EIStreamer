@@ -33,69 +33,76 @@
 			</div>
 			<div id="manualControls">
 				<h3>Manual Controls</h3>
-				
-				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-				
-				<div id="jp_container_1" class="jp-audio">
-					<div class="jp-type-single">
-						<div class="jp-gui jp-interface">
-							<ul class="jp-controls">
-								<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-								<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-								<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-								<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
-								<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
-							</ul>
-							
-							<div class="jp-progress">
-								<div class="jp-seek-bar">
-									<div class="jp-play-bar"></div>
-								</div>
-							</div>
-							
-							<div class="jp-time-holder">
-								<div class="jp-current-time"></div>
-								<div class="jp-duration"></div>
-								<ul class="jp-toggles">
+				<div class="playOptions-inner">
+					<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+					
+					<div id="jp_container_1" class="jp-audio">
+						<div class="jp-type-single">
+							<div class="jp-gui jp-interface">
+								<ul class="jp-controls">
+									<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+									<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+									<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+									<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+									<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
 								</ul>
+								
+								<div class="jp-progress">
+									<div class="jp-seek-bar">
+										<div class="jp-play-bar"></div>
+									</div>
+								</div>
+								
+								<div class="jp-time-holder">
+									<div class="jp-current-time"></div>
+									<div class="jp-duration"></div>
+									<ul class="jp-toggles">
+									</ul>
+								</div>
+								
 							</div>
 							
-						</div>
-						
-						<div class="jp-no-solution">
-							<span>Update Required</span>
-							To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+							<div class="jp-no-solution">
+								<span>Update Required</span>
+								To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div id="manualInput">
-					<input id="manual" type="text">
-				</div>
-
+					
+					<div id="manualInput">
+						<input id="manual" type="text">
+					</div>
+			</div>
 			</div>
 			
 			<div id="autoplay" class="playOptions">
 				<h3>Autoplay Options</h3>
-				<div id="ascending" class="auto-option">From Beginning</div>
-				<div id="descending" class="auto-option">In Reverse</div>
-				<div id="continuousRandom" class="auto-option">At Random</div>
-				<div id="track">
-					<input id="trackCheckbox" type="checkbox">
-					<span id="trackDescription">Remember Played</span>
-					<span id="trackDescription"><a href="?epi=showplayed">Show Played</a></span>
-					<span id="trackRemove"><a href="index.php">Remove Cookies</a></span>
+				<div class="playOptions-inner">
+					<div id="ascending" class="auto-option">From Beginning</div>
+					<div id="descending" class="auto-option">In Reverse</div>
+					<div id="continuousRandom" class="auto-option">At Random</div>
+				
+					<div id="track">
+						<input id="trackCheckbox" type="checkbox">
+						<span id="trackDescription">Remember Played</span>
+						<span id="trackDescription"><a href="?epi=showplayed">Show Played</a></span>
+						<span id="trackRemove"><a href="index.php">Remove Cookies</a></span>
+					</div>
 				</div>
 			</div>
 			
 			<div id="keyword" class="playOptions"><!--keyword tag cloud could be cool here-->
 				<h3>Keywords</h3>
-				<p>future keyword section</p>
+				<div class="playOptions-inner">
+					<p>future keyword section</p>
+				</div>
 			</div>
 			
 			<div id="share" class="playOptions">
 				<h3>Share</h3>
-				<input id="shareTextbox" type="text" readonly>
+				<div class="playOptions-inner">
+					<input id="shareTextbox" type="text" readonly>
+				</div>
 			</div>
 
 			<hr>

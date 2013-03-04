@@ -35,7 +35,7 @@ h2 {
 
 h3 {
 	border-bottom: 1px solid #ccc;
-	padding: 3px 0;
+	padding: 3px;
 	text-align: center;
 }
 
@@ -105,9 +105,7 @@ a:hover {
 }
 
 #manualInput {
-	background: #eee;
 	border-top: 1px solid #ccc;
-	padding: 5px;
 }
 
 #manualControls  button,
@@ -116,8 +114,6 @@ a:hover {
 
 }
 
-
-
 .playOptions {
 	border: 1px solid #ccc;
 	border-radius: 7px;
@@ -125,18 +121,23 @@ a:hover {
 	margin: 10px auto;
 }
 
+.playOptions-inner {
+	background: #eee;
+}
+
 #autoplay {
 	width: 200px;
 }
 
 .auto-option {
-	background: whitesmoke;
 	border-bottom: 1px solid #ccc;
 	padding: 3px 12px;
 }
 
 .auto-option:hover {
 	background: yellow;
+	cursor: hand;
+	cursor: pointer;
 }
 
 .auto-selected {
