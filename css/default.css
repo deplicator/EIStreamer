@@ -192,6 +192,7 @@ a:hover {
 	color: red;
 	font-family: 'VT323', sans-serif;
 	float: right;
+	width: 600px;
 }
 
 .mainViewArea {

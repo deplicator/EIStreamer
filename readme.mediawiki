@@ -42,6 +42,9 @@ Permission was given with the expliciet direction this project can only pull fro
 
 
 ==Work Log==
+===March 16, 2012===
+Finally found why audio wasn't loading when jPlayer was using flash player, but found another bug in the autoplay options. They don't continue to play after the end of the first episode played using the flash player.
+
 ===March 3, 2013===
 Discovered program audio is available at http://app2.kuhf.org/audio_library/engines/ and http://www.kuhf.org/programaudio/engines/. Setting up a fall back is not the worst idea.
 

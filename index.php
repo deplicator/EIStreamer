@@ -118,7 +118,7 @@
 		
 		<!--Right side-->
 		<div id="message">
-			<p>Error Message: Still working out bugs, audio takes a momemnt to load on Internet Explorer 8, 9, and Firefox.</p>
+			<p>Error Message: Still working out bugs, autoplay options currently do not work in browsers that require flash(IE versions <= 9 and FireFox).</p>
 		</div>
 		
 		<div id="transcript" class="mainViewArea"></div>

@@ -1,8 +1,12 @@
 var newest = "";
 
 	$("#jquery_jplayer_1").jPlayer({
-		swfPath: "./scripts/Jplayer.swf",
+		ready: function() {
+			$("#jquery_jplayer_1").jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + newest + '_64k.mp3' });
+		},
+		swfPath: "http://www.jplayer.org/2.0.0/js",
 		supplied: "mp3",
+		preload: "auto",
 		cssSelectorAncestor: "#jp_container_1",
 		cssSelector: {
 			play: ".jp-play",
@@ -140,14 +144,15 @@ $('#manual').keyup(function() {
  * Autoplay options.
  * This handles the three autoplay modes function and menu appearance.
  */
- 
 $('#ascending').click(function() {
 	updateDisplay(1);
 	$('#jquery_jplayer_1').jPlayer(
 		"setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng1_64k.mp3' }
-	).jPlayer("play");
-	$('#jquery_jplayer_1 audio').attr("autoplay", true); //Admittedly not an ideal solution.
+	);	
+	
+	$('#jquery_jplayer_1 audio').attr("autoplay", true); //Admittedly not an ideal solution, doesn't work for flash.
 	$('#jquery_jplayer_1 audio').on("ended", playNext);
+	
 	buttonCheck();
 });
 
@@ -166,6 +171,8 @@ function playRandom() {
     var randomEpisode = Math.floor(Math.random()*newest);
     updateDisplay(randomEpisode);
 	$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + randomEpisode + '_64k.mp3' });
+	$('#jquery_jplayer_1 audio').attr("autoplay", true); //Admittedly not an ideal solution.
+	$('#jquery_jplayer_1 audio').on("ended", playPrevious);
     buttonCheck();
 }
 
