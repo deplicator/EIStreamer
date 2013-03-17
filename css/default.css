@@ -193,6 +193,7 @@ a:hover {
 	font-family: 'VT323', sans-serif;
 	float: right;
 	width: 600px;
+	text-align: right;
 }
 
 .mainViewArea {
@@ -219,6 +220,7 @@ a:hover {
 #helpHeader {
 
 }
+
 
 
 

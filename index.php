@@ -64,7 +64,7 @@
 							
 							<div class="jp-no-solution">
 								<span>Update Required</span>
-								To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+								To play the media you will need to either update your <a href="https://www.google.com/intl/en/chrome/browser/">browser</a> or <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
 							</div>
 						</div>
 					</div>
@@ -86,7 +86,7 @@
 						<input id="trackCheckbox" type="checkbox">
 						<span id="trackDescription">Remember Played</span>
 						<span id="trackDescription"><a href="?epi=showplayed">Show Played</a></span>
-						<span id="trackRemove"><a href="index.php">Remove Cookies</a></span>
+						<span class="trackRemove"><a href="index.php">Remove Cookies</a></span>
 					</div>
 				</div>
 			</div>
@@ -118,7 +118,7 @@
 		
 		<!--Right side-->
 		<div id="message">
-			<p>Error Message: Still working out bugs, autoplay options currently do not work in browsers that require flash(IE versions <= 9 and FireFox).</p>
+			<p>Error Message: Still working out bugs.</p>
 		</div>
 		
 		<div id="transcript" class="mainViewArea"></div>
@@ -135,7 +135,7 @@
 				<p><em>Manual Controls</em> allow for playing, pausing, and stopping, also skipping to the next or last episode. The text box can also be used to type in an episode number manually. The episode will automatically change as the number is typed.</p>
 			</div>
 			<div class="helpSection" id="helpAutoControls">
-				<p><em>Autoplay Options</em> automaticly play a continuous stream of episodes. Checking the "Remembered Played" box will create a cookie that tracks the episodes already played so you can start where you left off on subsequent visits. All cookies created by this website can be deleted by clicking here.</p>
+				<p><em>Autoplay Options</em> automaticly play a continuous stream of episodes. Checking the "Remembered Played" box will create a cookie that tracks the episodes already played so you can start where you left off on subsequent visits. All cookies created by this website can be deleted by clicking <span class="trackRemove"><a href="index.php?epi=help">Remove Cookies</a></span>. This only effects auto play, episodes can still be replayed using the manual controls.</p>
 			</div>
 			<div class="helpSection" id="helpKeywords">
 				<p><em>Keywords</em> are assciated associated with every episode, to play all episodes by keyword click here.</p>

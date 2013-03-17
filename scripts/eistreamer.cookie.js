@@ -1,4 +1,30 @@
 //https://code.google.com/p/cookies/wiki/Documentation#With_jQuery
+//http://stackoverflow.com/questions/7683845/removing-duplicates-from-an-array-in-javascript
+
+/* 
+ * Array prototype to return only unique values in an array.
+ */
+Array.prototype.unique = function(){
+  return Object.keys(this.reduce(function(r,v){
+    return r[v]=1,r;
+  },{}));
+}
+
+/* 
+ * Create array from current cookie.
+ */
+var played = [];
+$(document).ready(function() {
+	if($.cookie('played') != null) {
+		oldPlayed = $.cookie('played').split(",");
+		var oldplayedlen = oldPlayed.length;
+		for(i = 0; i < oldplayedlen; i++) {
+			played.push(parseInt(oldPlayed[i]));
+		}
+		played.unique()
+		console.log(played);
+	}
+});
 
 /* 
  * Checks if the browser supports cookies.
@@ -30,25 +56,37 @@ $('#trackCheckbox:checkbox').click(function() {
 	$('#trackCheckbox').prop('checked', true);
  }
  
-
 /*
  * When an episode ends, if the check box is checked, append that episode
  * number to cookie.
  */
-$('#jquery_jplayer_1 audio').on("ended", function() {
-	if ($('#trackCheckbox:checkbox').is(':checked')) {
-		var current = $('#manual').val();
-		if($.cookie('played') == null) {
-			$.cookie('played', current, {expires:365}); //first value is always undefined, why?
-		} else { 
-			var more = $.cookie('played')
-			$.cookie('played', more + ',' + current, {expires:365});
+function cookieUpdate(epi) {
+	if($.cookie('played') == null) {
+		$.cookie('played', epi, {expires:365}); //first value is always undefined, why?
+	} else { 
+		var more = $.cookie('played')
+		$.cookie('played', more + ',' + epi, {expires:365});
+	}
+	played.push(parseInt(epi));
+}
+
+/*
+ * Checks cookie to see if current episode has already been played.
+ */
+function checkPlayed(epi) {
+	var playedlen = played.length;
+	for(i = 0; i < playedlen; i++) {
+		if(epi == played[i]) {
+			playNext();
 		}
 	}
-});
+	
+	console.log('checkPlayed on ' + epi);
+}
 
-
-//Remove all cookies function
+/*
+ * Remove played cookie.
+ */
 function removeAllCookies() {
 	//change this to not use confirm someday. (http://stackoverflow.com/questions/43955/changing-the-default-title-of-confirm-in-javascript)
 	var ask = confirm("Remove all cookies from this site?");
@@ -58,4 +96,29 @@ function removeAllCookies() {
 	}
 }
 
-$('#trackRemove').click(removeAllCookies);
+/*
+ * Binds Remove Cookie links to remove played cookie functions.
+ */
+$('.trackRemove').click(removeAllCookies);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

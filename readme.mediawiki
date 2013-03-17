@@ -31,18 +31,26 @@ Permission was given with the expliciet direction this project can only pull fro
 * When on help or about page menu options should be disabled.
 * Some characters display with ?'s.
 * Some episodes have a pierod after the by line.
-* Some of the pictures don't work (so far only discovered on episode 1889)
-
+* Some of the pictures don't work (so far only discovered on episode 1889).
+* Flash player seek bar doesn't display correctly.
 
 ===Would be neat===
 * Force image's to scale down when too wide for page. Good example in episode 2863.
 * Disable view for stop button when nothing is playing.
 * Have a "available in Spanish" link for episodes that have a spanish option.
-* store recent episode number in file incase the site can't reach uh.edu.
+* Store recent episode number in file incase the site can't reach uh.edu.
+* See episode's stored in cookie.
 
 
 ==Work Log==
-===March 16, 2012===
+===March 17, 2013===
+Got the autoplay options to mostly work with the fall back flash player. Passed testing in Firefox and IE9, IE8 still has issues but I'm testing in IE9 with IE8 compatibility turned on. Safari has known issues with jPlayer so I'm not even going to address that on this project yet.
+
+Fixed a min-width screen bug.
+
+Streamlined the cookie creation process. Started working on code that checks for previously played episodes (quite messy right now).
+
+===March 16, 2013===
 Finally found why audio wasn't loading when jPlayer was using flash player, but found another bug in the autoplay options. They don't continue to play after the end of the first episode played using the flash player.
 
 ===March 3, 2013===
