@@ -9,9 +9,9 @@ Streams ''The Engine's of Our Ingenuity'' episodes from the official site.
 Tested to work in Internet Explorer 10 and Chrome. Does work with Internet Explorer 8, 9, and FireFox with Adobe Flash although play back may take a little longer to load.
 
 ===Use===
-The Engine's of Our Inginuity is used on this project with persmission from KUHF, the University of Houston, and Dr. John Lienhard.
+The Engine's of Our Ingenuity is used on this project with permission from KUHF, the University of Houston, and Dr. John Lienhard.
 
-Permission was given with the expliciet direction this project can only pull from and parse the original website. All localization options have been removed. This code has been used for educational purposes, and can be reproduced in any form without permission from the author (although it's always a nice thing to do); however, if it is going to be used in conjuction with The Enginens of Out Ingenuity, permission should be obtained from KUHF, the University of Houston, and Dr. John Lienhard.
+Permission was given with the explicit direction this project can only pull from and parse the original website. All localization options have been removed. This code has been used for educational purposes, and can be reproduced in any form without permission from the author (although it's always a nice thing to do); however, if it is going to be used in conjunction with The Engine's of Out Ingenuity, permission should be obtained from KUHF, the University of Houston, and Dr. John Lienhard.
 
 
 ==Loose Time Table==
@@ -30,19 +30,25 @@ Permission was given with the expliciet direction this project can only pull fro
 ==Known bugs to work out==
 * When on help or about page menu options should be disabled.
 * Some characters display with ?'s.
-* Some episodes have a pierod after the by line.
+* Some episodes have a period after the by line.
 * Some of the pictures don't work (so far only discovered on episode 1889).
 * Flash player seek bar doesn't display correctly.
+* On occasion the main engine's page is updated and the latest episode has an audio file, but the transcript isn't available yet.
 
 ===Would be neat===
 * Force image's to scale down when too wide for page. Good example in episode 2863.
 * Disable view for stop button when nothing is playing.
-* Have a "available in Spanish" link for episodes that have a spanish option.
-* Store recent episode number in file incase the site can't reach uh.edu.
+* Have a "available in Spanish" link for episodes that have a Spanish option.
+* Store recent episode number in file in case the site can't reach uh.edu.
 * See episode's stored in cookie.
 
 
 ==Work Log==
+===March 21, 2013===
+Realized implementing cookies is harder the way I setup the player, so I started reworking some code. Hopefully in a way that better follows the DRY principle. Started with a function that simply plays an episode based on the argument provided (don't know why I didn't think of that before), but still need to rework the rest of the play options to use it. 
+
+Did an overdue and rather embarrassing spell check on this readme.
+
 ===March 17, 2013===
 Got the autoplay options to mostly work with the fall back flash player. Passed testing in Firefox and IE9, IE8 still has issues but I'm testing in IE9 with IE8 compatibility turned on. Safari has known issues with jPlayer so I'm not even going to address that on this project yet.
 
@@ -60,7 +66,7 @@ Started working on Cookies today. I opted to use the jCookie plug in for jQuery.
 
 Fixed a PHP error on line 4 of index.html by adding if(!isset($_REQUEST['epi'])).
 
-Fixed bug '''Episode transcript link continues to add li elements''' and '''Share link url doens't work'''.
+Fixed bug '''Episode transcript link continues to add li elements''' and '''Share link url doesn't work'''.
 
 ===February 24, 2013===
 Fixed jPlayer playback, cleaned up code in index.html and eistreamer.js, also added a fair bit of comments to the latter. Fixed autoplay options, although it could use a better solution (currently uses javascript and not jPlayer).
@@ -101,7 +107,7 @@ Added a footer, if I have a credit section be sure to add http://www.cssstickyfo
 
 ==General Notes so I don't forget==
 * more intuitive menu
-** popup instructions for manual input (reference bmrcalc)
+** pop up instructions for manual input (reference bmrcalc)
 ** Better way to handle manual input (look for comment in ieplay.js)
 
 * mobile

@@ -130,7 +130,7 @@ $('#manual').keyup(function() {
     var manualinput = $('#manual').val();
     if(manualinput < 1 || manualinput > newest) {
         updateDisplay(manualinput.substr(0,3)); //Handle this better
-        alert("out of range");
+        alert("out of range"); //Instead of alert try a 'no trascript for this selection' page
     } else {
 		$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + manualinput + '_64k.mp3' });
         updateDisplay(manualinput);
@@ -152,9 +152,11 @@ $('#ascending').click(function() {
 	$("#jquery_jplayer_1").jPlayer({
 		ready: function() {
 			$("#jquery_jplayer_1").jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng1_64k.mp3' });
+			
 			if ($('#trackCheckbox:checkbox').is(':checked')) {
-				checkPlayed($('#manual').val())
+				checkPlayed()
 			}
+			
 			$("#jquery_jplayer_1").jPlayer("play");
 		},
 		swfPath: "http://www.jplayer.org/2.0.0/js",
@@ -167,15 +169,17 @@ $('#ascending').click(function() {
 			stop: ".jp-stop"
 		},
 	  ended: function() {
-
 		if(!($('.jp-next').hasClass('jp-next-disabled'))) {
 			if ($('#trackCheckbox:checkbox').is(':checked')) {
-				checkPlayed($('#manual').val())
 				cookieUpdate($('#manual').val());
+				var next = parseInt($('#manual').val()) + 1;
+				updateDisplay(next);
+				$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + next + '_64k.mp3' });
+			} else {
+				var next = parseInt($('#manual').val()) + 1;
+				updateDisplay(next);
+				$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + next + '_64k.mp3' });
 			}
-			var next = parseInt($('#manual').val()) + 1;
-			updateDisplay(next);
-			$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + next + '_64k.mp3' });
 		}
 		$("#jquery_jplayer_1").jPlayer("play");
 	  }
@@ -251,7 +255,26 @@ $('#continuousRandom').click(function() {
 });
 
 
-
+function playepi(epi) {
+	$("#jquery_jplayer_1").jPlayer("destroy");
+	updateDisplay(epi);
+	$("#jquery_jplayer_1").jPlayer({
+		ready: function() {
+			$(this).jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + epi + '_64k.mp3' });
+			$(this).jPlayer("play");
+		},
+		swfPath: "http://www.jplayer.org/2.0.0/js",
+		supplied: "mp3",
+		preload: "auto",
+		cssSelectorAncestor: "#jp_container_1",
+		cssSelector: {
+			play: ".jp-play",
+			pause: ".jp-pause",
+			stop: ".jp-stop"
+		}
+	});
+	buttonCheck();
+}
 
 
 

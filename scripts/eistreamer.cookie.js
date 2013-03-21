@@ -21,7 +21,8 @@ $(document).ready(function() {
 		for(i = 0; i < oldplayedlen; i++) {
 			played.push(parseInt(oldPlayed[i]));
 		}
-		played.unique()
+		played.unique();
+		played.sort(function(a, b) {return a - b;});
 		console.log(played);
 	}
 });
@@ -73,15 +74,16 @@ function cookieUpdate(epi) {
 /*
  * Checks cookie to see if current episode has already been played.
  */
-function checkPlayed(epi) {
+function checkPlayed() {
 	var playedlen = played.length;
+	
 	for(i = 0; i < playedlen; i++) {
-		if(epi == played[i]) {
-			playNext();
+		if(i+1==played[i]) {
+			console.log(i);
 		}
 	}
 	
-	console.log('checkPlayed on ' + epi);
+	console.log('checkPlayed');
 }
 
 /*
