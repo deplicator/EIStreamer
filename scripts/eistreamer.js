@@ -35,14 +35,12 @@ function playepi(epi) {
  * @param {int} epi Episode number to load into jPlayer
  * @param {string} type Options are 'accending', 'decending', or 'random'. Random is default.
  */
-function ContinuousPlay(epi, type) {
-	if(type == 'accending') {
-		var counter = 1;
-	} else if(type == 'decending') {
-		var counter = newest;
-	} else {
-		var counter = 0;
-	}
+ $('#ascending').click(AccendingPlay);
+ 
+function AccendingPlay() {
+	var counter = 1;
+	checkAgainstPlayedList(counter)
+	
 	
 	
 	updateDisplay(counter);
@@ -50,11 +48,18 @@ function ContinuousPlay(epi, type) {
 	$('#jquery_jplayer_1').jPlayer('destroy'); //Recreating the player each time may not be the most effecent way of doing this.
 	$('#jquery_jplayer_1').jPlayer({
 		ready: function() {
-			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + epi + '_64k.mp3' });
+			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + counter + '_64k.mp3' });
 			$(this).jPlayer('play');
 		},
 		ended: function() {
-			//something will go here.
+			if(checkAgainstPlayedList(counter)) {
+				counter++;
+			}
+			//counter++;
+			updateDisplay(counter);
+			buttonCheck();
+			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + counter + '_64k.mp3' });
+			$(this).jPlayer('play');
 		},
 		swfPath: 'http://www.jplayer.org/2.0.0/js',
 		supplied: 'mp3',
@@ -67,6 +72,18 @@ function ContinuousPlay(epi, type) {
 		}
 	});
 }
+
+//checks for next hole in played list
+function checkAgainstPlayedList(epi) {
+	playedlistlen = played.length;
+	for(i = 0; i < playedlistlen; i++) {
+		if(epi == played[i]){
+			return checkAgainstPlayedList(epi + 1);
+		}
+	}
+	return epi; 
+}
+
 
 /*
  * Updates now playing and transcript.
@@ -197,7 +214,7 @@ $('.auto-option').click(function() {
 //Convert below to above format.
 
 //From Beginning Autoplay
-$('#ascending').click(function() {
+/*$('#ascending').click(function() {
 	var counter = 1;
 	updateDisplay(counter);
 	
@@ -235,16 +252,13 @@ $('#ascending').click(function() {
 	}
 	
 
-/*	
+
 	updateDisplay(1);
 	$("#jquery_jplayer_1").jPlayer("destroy");
 	
 	$("#jquery_jplayer_1").jPlayer({
 		ready: function() {
 			$("#jquery_jplayer_1").jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng1_64k.mp3' });
-			
-			
-			
 			$("#jquery_jplayer_1").jPlayer("play");
 		},
 		swfPath: "http://www.jplayer.org/2.0.0/js",
@@ -273,8 +287,8 @@ $('#ascending').click(function() {
 	  }
 	});
 
-	buttonCheck();*/
-});
+	buttonCheck();
+});*/
 
 //In Reverse Autoplay
 $('#descending').click(function() {
