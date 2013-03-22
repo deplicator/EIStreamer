@@ -1,5 +1,5 @@
 <?php
-
+//header('Content-type: application/json');
 function convert_smart_quotes($string) 
 { 
     $search = array(chr(145), chr(146), chr(147), chr(148), chr(151), chr(133)); 
@@ -13,11 +13,25 @@ function convert_smart_quotes($string)
 $episodenum = $_REQUEST['episodenum'];
 $html = file_get_contents("http://www.uh.edu/engines/epi" . $episodenum . ".htm");
 
+
 //strip page down to title, transcript, and citations.
 $begin = strpos($html, '<td>');
-$lesshtml = substr($html, $begin);
-$end = strrpos($lesshtml, '<hr');
-$lesshtml = substr($lesshtml, 0, $end);
+
+//Episode 2870 is very different than other episodes, this accounts for it and other episodes that may show up like it.
+if($begin == "") {
+	$begin = strpos($html, '<h1>');
+	$lesshtml = substr($html, $begin);	
+	$end = strrpos($lesshtml, '<footer>'); //get rid of that footer!
+	$lesshtml = substr($lesshtml, 0, $end);
+	$lesshtml = $lesshtml . '<p class="smaller">The Engines of Our Ingenuity is copyright © 1988-2013 by John H. Lienhard.</p>';
+} else {
+	//For old table style episode transcripts.
+	$lesshtml = substr($html, $begin);
+	$end = strrpos($lesshtml, '<hr');
+	$lesshtml = substr($lesshtml, 0, $end);
+}
+
+
 
 
 //Remove click here for audio line.
@@ -31,5 +45,12 @@ $lesshtml = convert_smart_quotes($lesshtml);
 $fiximg = 'src="http://www.uh.edu/engines/';
 $lesshtml = str_replace('src="', $fiximg, $lesshtml);
 
+$lesshtml =  strip_tags($lesshtml, '<p><center><blockquote><font><br><hr><img>');
+
+//Dealing with the period (needs refinement)
+//$stupid_period = strrpos($lesshtml, '<p align="center">');
+//$temp = substr($lesshtml, $stupid_period, 70);
+//$lesshtml = str_replace($temp, ' ', $lesshtml);
+
 //display result 
-echo strip_tags($lesshtml, '<p><center><blockquote><font><br><hr><img>');
+echo $lesshtml;

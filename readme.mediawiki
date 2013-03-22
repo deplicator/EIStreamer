@@ -44,6 +44,11 @@ Permission was given with the explicit direction this project can only pull from
 
 
 ==Work Log==
+===March 22, 2013===
+Today I realized the reason episode 2870 didn't show the transcript was because the layout is different--it is all out HTML5--than the other episodes (why did they have to change it now after all these years? lol). Episode 2871 goes back to the old table method, so my solution was to change get_episode_transcript.php to look for the new version and the old version. It's fixed for today. In light of this I should change the way the latest episode number is retrieved too. My first thought it to loop through the audio files and see which is the last one to be longer than 4 seconds.
+
+Started the major code rework to implement cookies. The current push is not useable (but the live demo still is).
+
 ===March 21, 2013===
 Realized implementing cookies is harder the way I setup the player, so I started reworking some code. Hopefully in a way that better follows the DRY principle. Started with a function that simply plays an episode based on the argument provided (don't know why I didn't think of that before), but still need to rework the rest of the play options to use it. 
 
