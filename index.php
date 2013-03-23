@@ -40,11 +40,11 @@
 						<div class="jp-type-single">
 							<div class="jp-gui jp-interface">
 								<ul class="jp-controls">
-									<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-									<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-									<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-									<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
-									<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+									<li><a href="javascript:;" class="jp-play" title="Play">play</a></li>
+									<li><a href="javascript:;" class="jp-pause" title="Pause">pause</a></li>
+									<li><a href="javascript:;" class="jp-stop" title="Stop">stop</a></li>
+									<li><a href="javascript:;" class="jp-previous">previous</a></li>
+									<li><a href="javascript:;" class="jp-next">next</a></li>
 								</ul>
 								
 								<div class="jp-progress">
@@ -80,9 +80,10 @@
 				<div class="playOptions-inner">
 					<div id="ascending" class="auto-option">From Beginning</div>
 					<div id="descending" class="auto-option">In Reverse</div>
-					<div id="continuousRandom" class="auto-option">At Random</div>
+					<div id="randomly" class="auto-option">At Random</div>
 				
 					<div id="track">
+						<div id="trackHelp"><--Check this box to pick up where you left off when you come back!</div>
 						<input id="trackCheckbox" type="checkbox">
 						<span id="trackDescription">Remember Played</span>
 						<span id="trackDescription"><a href="?epi=showplayed">Show Played</a></span>
@@ -118,7 +119,6 @@
 		
 		<!--Right side-->
 		<div id="message">
-			<p>Error Message: Still working out bugs.</p>
 		</div>
 		
 		<div id="transcript" class="mainViewArea"></div>
@@ -150,14 +150,17 @@
 		
 		<!--About Page-->
 		<div id="about" class="mainViewArea hidden">
-			<p>about page</p>
-			<a href="index.php" id="transcriptButton">Back to Transcript</a>
+			<p>About this Project | <a href="index.php" id="transcriptButton">Back to Transcript</a></p>
+			<p>Student project and such...</p>
+			<p>Please <a href="mailto:james@geekwagon.net" title="james@geekwagon.net">Contact me</a> if you find a <a href="https://github.com/deplicator/EIStreamer">bug not on the list</a>.</p>
+			<img src="./images/pvamu-logo.png"><br>
+			<img src="./images/universityofhouston-logo.png"><br>
+			<img src="./images/kuhf-logo.png">
 		</div>
 		
 		<!--Show Played Page-->
 		<div id="showplayed" class="mainViewArea hidden">
-			<p>Show played page.</p>
-			<a href="index.php" id="transcriptButton">Back to Transcript</a>
+			<p>List of Episode's Remembered | <a href="index.php" id="transcriptButton">Back to Transcript</a></p>
 		</div>
 		
 	</div>
@@ -169,8 +172,9 @@
 		<p><a href="http://www.uh.edu/engines/">The Engine's of Our Inginuity</a> is used with persmission from <a href="http://kuhf.org">KUHF</a>, the <a href="http://uh.edu">University of Houston</a>, and <a href="http://www.uh.edu/engines/jhlbio.htm">Dr. John Lienhard</a>.</p>
 	</footer>
     
+	<script src="scripts/eistreamer.help.js"></script>
     <script src="scripts/eistreamer.js"></script>
 	<script src="scripts/eistreamer.cookie.js"></script>
-	<script src="scripts/eistreamer.help.js"></script>
+	
 </body>
 </html>

@@ -28,22 +28,31 @@ Permission was given with the explicit direction this project can only pull from
 
 
 ==Known bugs to work out==
-* When on help or about page menu options should be disabled.
 * Some characters display with ?'s.
 * Some episodes have a period after the by line.
 * Some of the pictures don't work (so far only discovered on episode 1889).
-* Flash player seek bar doesn't display correctly.
 * On occasion the main engine's page is updated and the latest episode has an audio file, but the transcript isn't available yet.
+* Cookie size limit is reached at about 690 episodes remembered.
 
 ===Would be neat===
-* Force image's to scale down when too wide for page. Good example in episode 2863.
-* Disable view for stop button when nothing is playing.
+* Force image's to scale down when too wide for page and turn off overflow on that div. Good example in episode 2863.
 * Have a "available in Spanish" link for episodes that have a Spanish option.
-* Store recent episode number in file in case the site can't reach uh.edu.
-* See episode's stored in cookie.
-
+* Store recent episode number in file on server in case the site can't reach uh.edu.
+* Toggle button for Transcript | Help mode.
 
 ==Work Log==
+===March 23, 2013===
+While reworking the Autoplay options to be cookie friendly, I learned you cannot pass parameters to a function using jQuery's click in the way one would expect.
+http://stackoverflow.com/questions/3273350/jquery-click-pass-parameters-to-user-function
+
+I finished the rework to make cookies work, but learned cookies have a size limit. The cookie reaches it's maximum size in chrome after about 690 episodes. Added to bug list.
+
+Modified jPlayer Blue Monday skin to incorporate disabled Play and Stop buttons for when the player has nothing loaded (when viewing help or about page). Added function to disable play menu options. It's used on all pages except 'transcript'. Added a pop-up help for remembered play check box, shouldn't be annoying. Started on an about page.
+
+Moved some files and folders into 'possible delete' folders. Most of them look like optionsl jPlayer stuff that is not being used. Will delete after some testing.
+
+It looks like this commit might complete March's loose time table goal! 
+
 ===March 22, 2013===
 Today I realized the reason episode 2870 didn't show the transcript was because the layout is different--it is all out HTML5--than the other episodes (why did they have to change it now after all these years? lol). Episode 2871 goes back to the old table method, so my solution was to change get_episode_transcript.php to look for the new version and the old version. It's fixed for today. In light of this I should change the way the latest episode number is retrieved too. My first thought it to loop through the audio files and see which is the last one to be longer than 4 seconds.
 

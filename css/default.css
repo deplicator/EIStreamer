@@ -99,9 +99,9 @@ a:hover {
 #manualControls {
 	border: 1px solid #ccc;
 	border-radius: 7px;
+	margin: 0 auto;
 	text-align: center;
 	width: 300px;
-	margin: 0 auto;
 }
 
 #manualInput {
@@ -117,8 +117,8 @@ a:hover {
 .playOptions {
 	border: 1px solid #ccc;
 	border-radius: 7px;
-	width: 300px;
 	margin: 10px auto;
+	width: 300px;
 }
 
 .playOptions-inner {
@@ -145,6 +145,11 @@ a:hover {
 	font-weight: 700;
 }
 
+.auto-option-disabled:hover {
+	background: none;
+	cursor: default;
+}
+
 #track #trackCheckbox {
 	float: left
 }
@@ -157,6 +162,18 @@ a:hover {
 #track {
 	font-size: 12px;
 	padding: 5px;
+	position: relative;
+}
+
+#track #trackHelp {
+	display: none;
+	background: #FFFF00;
+	border: 1px solid #CCCC00;
+	border-radius: 3px;
+	padding: 2px 0 5px 5px;
+	position: absolute;
+	left: 133px;
+	width: 195px;
 }
 
 #keyword {
@@ -164,8 +181,8 @@ a:hover {
 }
 
 #shareTextbox {
-	width: 272px;
 	margin: 10px;
+	width: 272px;
 }
 
 
@@ -174,9 +191,9 @@ a:hover {
 }
 
 #officialInfo li {
-	list-style-image:url('../images/uhmark-red.png');
-	padding: 0px 0 5px 0px;
 	font-size: 13px;
+	line-height: 26px;
+	list-style-image:url('../images/arrow.png');
 }
 
 #officialInfo li * {
@@ -221,6 +238,13 @@ a:hover {
 
 }
 
+
+/*About section*/
+#about img {
+	margin: 6px;
+	border: 1px solid #ccc;
+	padding: 4px;
+}
 
 
 

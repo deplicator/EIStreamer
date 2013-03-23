@@ -3,21 +3,23 @@
  */
 
 var newest = '';
+var played = [];
+playedlistlen = 0;
 
 /*
- * Play function, optional parametier to play on load.
+ * Play function, optional parameter to play on load.
  * @function
  * @param {int} epi Episode number to load into jPlayer
  */
 function playepi(epi) {
 	updateDisplay(epi);
 	buttonCheck();
-	$('#jquery_jplayer_1').jPlayer('destroy'); //Recreating the player each time may not be the most effecent way of doing this.
+	$('#jquery_jplayer_1').jPlayer('destroy');
 	$('#jquery_jplayer_1').jPlayer({
 		ready: function() {
 			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + epi + '_64k.mp3' });
 		},
-		swfPath: 'http://www.jplayer.org/2.0.0/js',
+		swfPath: './scripts/Jplayer.swf',
 		supplied: 'mp3',
 		preload: 'auto',
 		cssSelectorAncestor: '#jp_container_1',
@@ -28,65 +30,11 @@ function playepi(epi) {
 		}
 	});
 }
-
-/*
- * Continuous Play function, optional parametier to play on load.
- * @function
- * @param {int} epi Episode number to load into jPlayer
- * @param {string} type Options are 'accending', 'decending', or 'random'. Random is default.
- */
- $('#ascending').click(AccendingPlay);
- 
-function AccendingPlay() {
-	var counter = 1;
-	checkAgainstPlayedList(counter)
-	
-	
-	
-	updateDisplay(counter);
-	buttonCheck();
-	$('#jquery_jplayer_1').jPlayer('destroy'); //Recreating the player each time may not be the most effecent way of doing this.
-	$('#jquery_jplayer_1').jPlayer({
-		ready: function() {
-			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + counter + '_64k.mp3' });
-			$(this).jPlayer('play');
-		},
-		ended: function() {
-			if(checkAgainstPlayedList(counter)) {
-				counter++;
-			}
-			//counter++;
-			updateDisplay(counter);
-			buttonCheck();
-			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + counter + '_64k.mp3' });
-			$(this).jPlayer('play');
-		},
-		swfPath: 'http://www.jplayer.org/2.0.0/js',
-		supplied: 'mp3',
-		preload: 'auto',
-		cssSelectorAncestor: '#jp_container_1',
-		cssSelector: {
-			play: '.jp-play',
-			pause: '.jp-pause',
-			stop: '.jp-stop'
-		}
-	});
-}
-
-//checks for next hole in played list
-function checkAgainstPlayedList(epi) {
-	playedlistlen = played.length;
-	for(i = 0; i < playedlistlen; i++) {
-		if(epi == played[i]){
-			return checkAgainstPlayedList(epi + 1);
-		}
-	}
-	return epi; 
-}
-
 
 /*
  * Updates now playing and transcript.
+ * @function
+ * @param {int} num Episode number to load into jPlayer.
  */
 function updateDisplay(num) {
     $('#transcript').load('scripts/get_episode_transcript.php?episodenum=' + num);
@@ -95,6 +43,10 @@ function updateDisplay(num) {
 	var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 	$('#shareTextbox').val(site + '/?epi=' + num)
 	$('#OTLink').html('<a href="http://www.uh.edu/engines/epi'+num+'.htm">Original Transcript for this Episode, No.'+num+'</a>');
+	var prevepi = num - 1;
+	var nextepi = num + 1;
+	$('.jp-previous').attr('title', 'Episode ' + prevepi.toString());
+	$('.jp-next').attr('title', 'Episode ' + nextepi.toString());
 }
 
 /*
@@ -105,9 +57,9 @@ function buttonCheck() {
     $('.jp-next').removeClass("jp-next-disabled");
     $('.jp-previous').removeClass("jp-previous-disabled");
     if(current == 1) {
-        $('.jp-previous').addClass("jp-previous-disabled");
+        $('.jp-previous').addClass("jp-previous-disabled").attr('title', 'Episode not available');
     } else if(current == newest){
-        $('.jp-next').addClass("jp-next-disabled");
+        $('.jp-next').addClass("jp-next-disabled").attr('title', 'Episode not available');
     }
 }
 
@@ -137,7 +89,7 @@ $('#manual').keyup(function() {
     var manualinput = $('#manual').val();
     if(manualinput < 1 || manualinput > newest) {
         updateDisplay(manualinput.substr(0,3)); //Handle this better
-        alert("out of range"); //Instead of alert try a 'no trascript for this selection' page
+        alert("out of range"); //Instead of alert try a 'no transcript for this selection' page
     } else {
 		playepi(manualinput);
     }
@@ -147,14 +99,127 @@ $('#manual').keyup(function() {
  * Autoplay options.
  * This handles the three autoplay modes function and menu appearance.
  */
-//From Begining
+if($.cookie('played') == null) {
+	var firstPlayFlag = true;
+} else {
+	var firstPlayFlag = false;
+}
+//From Beginning
+$('#ascending').click(function() {
+	if (!$(this).hasClass('auto-option-disabled')) {
+		continiousPlay('ascending');
+		rememberedNotice();
+	}
+});
 
 //In Reverse
+$('#descending').click(function() {
+	if (!$(this).hasClass('auto-option-disabled')) {
+		continiousPlay('descending');
+		rememberedNotice();
+	}
+});
 
 //At Random
+$('#randomly').click(function() {
+	if (!$(this).hasClass('auto-option-disabled')) {
+		continiousPlay('randomly');
+		rememberedNotice();
+	}
+});
 
+/*
+ * ContinuousPlay function will continuiously play as expected based on 
+ * parameter.
+ * @function
+ * @param {string} type Can be 'ascending', 'descending', or 'randomly'.
+ */
+function continiousPlay(type) {
+	if(type == 'ascending') {
+		var counter = 1;
+	} else if(type == 'descending') { 
+		var counter = newest;
+	} else if(type == 'randomly') {
+		var counter = Math.floor(Math.random()*newest);
+	}
+	
+	var counter = checkAgainstPlayedList(counter, type)
 
+	updateDisplay(counter);
+	buttonCheck();
+	$('#jquery_jplayer_1').jPlayer('destroy'); //Recreating the player each time may not be the most efficient way of doing this.
+	$('#jquery_jplayer_1').jPlayer({
+		ready: function() {
+			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + counter + '_64k.mp3' });
+			$(this).jPlayer('play');
+		},
+		ended: function() {
+			if($('#trackCheckbox:checkbox').is(':checked')) { 
+				cookieUpdate(counter); //Update cookie and array.
+				counter = checkAgainstPlayedList(counter, type) //Move to next episode not found in array, in approprite direction.
+				//counter = checkAgainstPlayedList(counter); 
+			} else { //Remembered Played check box is unchecked just play an episode.
+				if(type == 'ascending') {
+					counter++; 
+				} else if(type == 'descending') { 
+					counter--;
+				} else if(type == 'randomly') {
+					counter = Math.floor(Math.random()*newest);
+				}
+			}
+			updateDisplay(counter); 
+			buttonCheck();
+			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + counter + '_64k.mp3' });
+			$(this).jPlayer('play');
+		},
+		swfPath: './scripts/Jplayer.swf',
+		supplied: 'mp3',
+		preload: 'auto',
+		cssSelectorAncestor: '#jp_container_1',
+		cssSelector: {
+			play: '.jp-play',
+			pause: '.jp-pause',
+			stop: '.jp-stop'
+		}
+	});
+}
 
+/*
+ * checkAgainstPlayedList function get's next episode, previous episode, or 
+ * random episode based on type parameter.
+ *
+ * @function
+ * @param {int} epi Current episode.
+ * @param {string} event 'ascending', 'descending', or 'randomly'.
+ */
+function checkAgainstPlayedList(epi, type) {
+	playedlistlen = played.length;
+	//Next episode
+	if(type == 'ascending') {
+		for(i = 0; i < playedlistlen; i++) {
+			if(epi == played[i]){
+				return checkAgainstPlayedList(epi + 1, 'ascending');
+			}
+		}
+		return epi; 
+	//Previous episode
+	} else if(type == 'descending') {
+		for(i = playedlistlen; i > 0; i--) {
+			if(epi == played[i]){
+				return checkAgainstPlayedList(epi - 1, 'descending');
+			}
+		}
+		return epi - 1; 
+	//Random episode
+	} else if(type == 'randomly') {
+		for(i = 0; i < playedlistlen; i++) {
+			if(epi == played[i]){
+				return checkAgainstPlayedList(Math.floor(Math.random()*newest), 'ascending');
+			}
+		}
+		return epi;
+	}
+}
 
 /*
  * Load's right side panel based on URL.
@@ -166,6 +231,7 @@ if($('#data').html() == "about") {
 	$('#message').addClass('hidden');
 	$('#showplayed').addClass('hidden');
 	$('#transcript').addClass('hidden');
+	disabledPlayOptions();
 //Show Help Page
 } else if($('#data').html() == "help") {
 	$('#about').addClass('hidden');
@@ -173,6 +239,7 @@ if($('#data').html() == "about") {
 	$('#message').addClass('hidden');
 	$('#showplayed').addClass('hidden');
 	$('#transcript').addClass('hidden');
+	disabledPlayOptions();
 //Show played episodes list from cookie.
 } else if($('#data').html() == "showplayed") {
 	$('#about').addClass('hidden');
@@ -180,6 +247,7 @@ if($('#data').html() == "about") {
 	$('#message').addClass('hidden');
 	$('#showplayed').removeClass('hidden');
 	$('#transcript').addClass('hidden');
+	disabledPlayOptions();
 //Show Transcript of latest episode.
 } else if($('#data').html() == "") {
 	$('#data').load('scripts/get_newest_episode.php', function() {
@@ -201,164 +269,8 @@ if($('#data').html() == "about") {
  */
 //Auto play menu
 $('.auto-option').click(function() {
-	$('.auto-option').removeClass('auto-selected');
-	$(this).addClass('auto-selected');
-});
-
-
-
-
-
-
-
-//Convert below to above format.
-
-//From Beginning Autoplay
-/*$('#ascending').click(function() {
-	var counter = 1;
-	updateDisplay(counter);
-	
-	buttonCheck();
-	
-	$('#jquery_jplayer_1').jPlayer('destroy'); //Recreating the player each time may not be the most effecent way of doing this.
-	
-	$('#jquery_jplayer_1').jPlayer({
-		ready: function() {
-			$(this).jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + counter + '_64k.mp3' });
-			$(this).jPlayer('play');
-
-		},
-		swfPath: 'http://www.jplayer.org/2.0.0/js',
-		supplied: 'mp3',
-		preload: 'auto',
-		cssSelectorAncestor: '#jp_container_1',
-		cssSelector: {
-			play: '.jp-play',
-			pause: '.jp-pause',
-			stop: '.jp-stop'
-		},
-		ended: function() {
-			counter++;
-			playanother(counter);
-			
-		}
-	});
-	
-	function playanother(epi) {
-		updateDisplay(epi);
-		$('#jquery_jplayer_1').jPlayer('setMedia', { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + epi + '_64k.mp3' });
-		$('#jquery_jplayer_1').jPlayer("play");
-		
+	if (!$(this).hasClass('auto-option-disabled')) {
+		$('.auto-option').removeClass('auto-selected');
+		$(this).addClass('auto-selected');
 	}
-	
-
-
-	updateDisplay(1);
-	$("#jquery_jplayer_1").jPlayer("destroy");
-	
-	$("#jquery_jplayer_1").jPlayer({
-		ready: function() {
-			$("#jquery_jplayer_1").jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng1_64k.mp3' });
-			$("#jquery_jplayer_1").jPlayer("play");
-		},
-		swfPath: "http://www.jplayer.org/2.0.0/js",
-		supplied: "mp3",
-		preload: "auto",
-		cssSelectorAncestor: "#jp_container_1",
-		cssSelector: {
-			play: ".jp-play",
-			pause: ".jp-pause",
-			stop: ".jp-stop"
-		},
-	  ended: function() {
-		if(!($('.jp-next').hasClass('jp-next-disabled'))) {
-			if ($('#trackCheckbox:checkbox').is(':checked')) {
-				cookieUpdate($('#manual').val());
-				var next = parseInt($('#manual').val()) + 1;
-				updateDisplay(next);
-				$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + next + '_64k.mp3' });
-			} else {
-				var next = parseInt($('#manual').val()) + 1;
-				updateDisplay(next);
-				$('#jquery_jplayer_1').jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + next + '_64k.mp3' });
-			}
-		}
-		$("#jquery_jplayer_1").jPlayer("play");
-	  }
-	});
-
-	buttonCheck();
-});*/
-
-//In Reverse Autoplay
-$('#descending').click(function() {
-	updateDisplay(newest);
-	$("#jquery_jplayer_1").jPlayer("destroy");
-
-	$("#jquery_jplayer_1").jPlayer({
-		ready: function() {
-			$("#jquery_jplayer_1").jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + newest + '_64k.mp3' });
-			$("#jquery_jplayer_1").jPlayer("play");
-		},
-		swfPath: "http://www.jplayer.org/2.0.0/js",
-		supplied: "mp3",
-		preload: "auto",
-		cssSelectorAncestor: "#jp_container_1",
-		cssSelector: {
-			play: ".jp-play",
-			pause: ".jp-pause",
-			stop: ".jp-stop"
-		},
-	  ended: function() {
-		if ($('#trackCheckbox:checkbox').is(':checked')) {
-			cookieUpdate($('#manual').val());
-		}
-		playPrevious();
-		$("#jquery_jplayer_1").jPlayer("play");
-	  }
-	});
-
-	buttonCheck();
 });
-
-//At Random Autoplay
-$('#continuousRandom').click(function() {
-	var randomEpisode = Math.floor(Math.random()*newest);
-	updateDisplay(randomEpisode);
-	$("#jquery_jplayer_1").jPlayer("destroy");
-	
-	$("#jquery_jplayer_1").jPlayer({
-		ready: function() {
-			$(this).jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + randomEpisode + '_64k.mp3' });
-			$(this).jPlayer("play");
-		},
-		swfPath: "http://www.jplayer.org/2.0.0/js",
-		supplied: "mp3",
-		preload: "auto",
-		cssSelectorAncestor: "#jp_container_1",
-		cssSelector: {
-			play: ".jp-play",
-			pause: ".jp-pause",
-			stop: ".jp-stop"
-		},
-	  ended: function() {
-		if ($('#trackCheckbox:checkbox').is(':checked')) {
-			cookieUpdate(randomEpisode);
-		}
-		randomEpisode = Math.floor(Math.random()*newest);
-		updateDisplay(randomEpisode);
-		$(this).jPlayer("setMedia", { mp3: 'http://www.kuhf.org/programaudio/engines/eng' + randomEpisode + '_64k.mp3' });
-		$(this).jPlayer("play");
-		
-	  }
-	});
-	
-	buttonCheck();
-});
-
-
-
-
-
-
-

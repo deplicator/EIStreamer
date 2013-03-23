@@ -13,17 +13,24 @@ Array.prototype.unique = function(){
 /* 
  * Create array from current cookie.
  */
-var played = [];
 $(document).ready(function() {
 	if($.cookie('played') != null) {
 		oldPlayed = $.cookie('played').split(",");
 		var oldplayedlen = oldPlayed.length;
 		for(i = 0; i < oldplayedlen; i++) {
-			played.push(parseInt(oldPlayed[i]));
+			played.push(oldPlayed[i]);
 		}
-		played.unique();
-		played.sort(function(a, b) {return a - b;});
+		played = played.unique();
+		played = played.map(function (x) { 
+			return parseInt(x, 10); 
+		});
+		played = played.sort(function(a, b) {return a - b;});
 		console.log(played);
+	}
+	playedlistlen = played.length;
+	//Add episode list to Show Played page.
+	for(i = 0; i < playedlistlen; i++) {
+		$('#showplayed').append('<li>' + played[i] + '</li>');
 	}
 });
 
@@ -73,7 +80,7 @@ function cookieUpdate(epi) {
 
 /*
  * Checks cookie to see if current episode has already been played.
- */
+
 function checkPlayed() {
 	var playedlen = played.length;
 	
@@ -84,7 +91,7 @@ function checkPlayed() {
 	}
 	
 	console.log('checkPlayed');
-}
+} */
 
 /*
  * Remove played cookie.

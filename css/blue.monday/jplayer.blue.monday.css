@@ -13,7 +13,8 @@
  * Skin Version: 4.2 (jPlayer 2.2.0)
  * Date: 22nd October 2012
  * 
- * Modified for EIStreamer Project
+ * Modified for EIStreamer Project to incorporate disabled buttons.
+ * - http://geekwagon.net/projects/eistreamer
  */
 
 div.jp-audio,
@@ -155,13 +156,26 @@ a.jp-pause {
 a.jp-play {
 	background: url("jplayer.blue.monday.jpg") 0 0 no-repeat;
 }
+
 a.jp-play:hover {
 	background: url("jplayer.blue.monday.jpg") -41px 0 no-repeat;
 }
+
+a.jp-play-disabled {
+	background: url("jplayer.blue.monday.jpg") -82px 0 no-repeat;
+	cursor: default;
+}
+
+a.jp-play-disabled:hover {
+	background: url("jplayer.blue.monday.jpg") -82px 0 no-repeat;
+	cursor: default;
+}
+
 a.jp-pause {
 	background: url("jplayer.blue.monday.jpg") 0 -42px no-repeat;
 	display: none;
 }
+
 a.jp-pause:hover {
 	background: url("jplayer.blue.monday.jpg") -41px -42px no-repeat;
 }
@@ -181,6 +195,18 @@ a.jp-stop:hover {
 	background: url("jplayer.blue.monday.jpg") -29px -83px no-repeat;
 }
 
+a.jp-stop-disabled {
+	background: url("jplayer.blue.monday.jpg") -58px -83px no-repeat;
+	margin-left:10px;
+	cursor: default;
+}
+
+a.jp-stop-disabled:hover {
+	background: url("jplayer.blue.monday.jpg") -58px -83px no-repeat;
+	margin-left:10px;
+	cursor: default;
+}
+
 a.jp-previous {
 	background: url("jplayer.blue.monday.jpg") 0 -112px no-repeat;
 }
@@ -190,10 +216,12 @@ a.jp-previous:hover {
 
 a.jp-previous-disabled {
 	background: url("jplayer.blue.monday.jpg") -58px -112px no-repeat;
+	cursor: default;
 }
 
 a.jp-previous-disabled:hover {
 	background: url("jplayer.blue.monday.jpg") -58px -112px no-repeat;
+	cursor: default;
 }
 
 a.jp-next {
@@ -205,10 +233,12 @@ a.jp-next:hover {
 
 a.jp-next-disabled {
 	background: url("jplayer.blue.monday.jpg") -58px -141px no-repeat;
+	cursor: default;
 }
 
 a.jp-next-disabled:hover {
 	background: url("jplayer.blue.monday.jpg") -58px -141px no-repeat;
+	cursor: default;
 }
 
 /* @end */
