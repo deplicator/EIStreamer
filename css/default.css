@@ -1,13 +1,15 @@
 @import url(http://reset5.googlecode.com/hg/reset.min.css);
 
-@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic);
 @import url(http://fonts.googleapis.com/css?family=VT323);
 
 html {
 	min-width: 1000px;
 	font-family: 'Open Sans', sans-serif;
 	color: #222;
+	height: 100%;
+	background: #fafafa;
 	height: 100%;
 }
 
@@ -16,18 +18,18 @@ body {
 }
 
 #wrap {
-	min-height: 100%;
+	height: 100%;
 }
 
 h1 {
-	font-family: 'Droid Serif', serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	text-align: center;
 	padding: 10px 0 0 0;
 }
 
 h2 {
-	font-family: 'Droid Serif', serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	text-align: center;
 	padding: 0 0 10px 0;
@@ -48,26 +50,38 @@ hr {
 	text-align: center;
 }
 
-p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 8px 16px;
+#transcript {
+
 }
 
 #transcript blockquote blockquote {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Libre Baskerville', serif;
     font-size: 16px;
-    line-height: 24px;
-    padding: 8px 16px;
+    line-height: 28px;
+    padding: 15px 50px 0 20px;
 	margin: 0 0 0 20px;
 }
 
-#transcript * {
-	font-family: 'Open Sans', sans-serif;
+#transcript p {
+	font-family: 'Libre Baskerville', serif;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 28px;
+    padding: 15px 50px 0 20px;
 }
+
+#transcript img {
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin: 25px;
+}
+
+#transcript * {
+	font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+
 
 a {
 	text-decoration: none;
@@ -85,7 +99,8 @@ a:hover {
 	border-bottom-right-radius: 7px;
 	float: left;
 	min-width: 310px;
-    width:30%
+    width:30%;
+    position: fixed;
 }
 
 
@@ -221,11 +236,6 @@ a:hover {
 	padding-bottom: 100px;
 }
 
-/*Transcript*/
-#transcript {
-
-}
-
 
 /*Help section*/
 
@@ -251,6 +261,7 @@ a:hover {
 
 footer {
 	position: relative;
+    font-family: 'Open Sans', sans-serif;
 	margin-top: -100px;
 	text-align: right;
 	width: 100%;

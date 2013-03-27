@@ -70,28 +70,13 @@ $('#trackCheckbox:checkbox').click(function() {
  */
 function cookieUpdate(epi) {
 	if($.cookie('played') == null) {
-		$.cookie('played', epi, {expires:365}); //first value is always undefined, why?
+		$.cookie('played', epi, {expires:365});
 	} else { 
 		var more = $.cookie('played')
 		$.cookie('played', more + ',' + epi, {expires:365});
 	}
 	played.push(parseInt(epi));
 }
-
-/*
- * Checks cookie to see if current episode has already been played.
-
-function checkPlayed() {
-	var playedlen = played.length;
-	
-	for(i = 0; i < playedlen; i++) {
-		if(i+1==played[i]) {
-			console.log(i);
-		}
-	}
-	
-	console.log('checkPlayed');
-} */
 
 /*
  * Remove played cookie.

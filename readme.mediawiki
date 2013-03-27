@@ -37,10 +37,20 @@ Permission was given with the explicit direction this project can only pull from
 ===Would be neat===
 * Force image's to scale down when too wide for page and turn off overflow on that div. Good example in episode 2863.
 * Have a "available in Spanish" link for episodes that have a Spanish option.
-* Store recent episode number in file on server in case the site can't reach uh.edu.
 * Toggle button for Transcript | Help mode.
 
 ==Work Log==
+===March 27, 2013===
+Got images that were wider than the screen to scale down. Made some minor color and font changes based on some articles I read (see bullet list below). Might incorporate some break points in May if there is time, but for now I just wanted some nice readable text. Also fixed the player controls to the top so you don't have to go back to the top after reading a transcript.
+
+* http://informationarchitects.net/blog/responsive-typography-the-basics/
+* http://informationarchitects.net/blog/100e2r/
+* http://www.smashingmagazine.com/2013/03/01/logical-breakpoints-responsive-design/
+
+Fixed a problem that allows the links taken from UH's site to work from this site.
+
+Changed get_newest_episode.php to store last episode locally. If for any reason it can't reach UH's website it will still get an episode number. It updates the local latest episode number when anyone goes to the web page (admitidly kind of pointless because if UH's site cannot be reached the transcript or audio won't load).
+
 ===March 23, 2013===
 While reworking the Autoplay options to be cookie friendly, I learned you cannot pass parameters to a function using jQuery's click in the way one would expect.
 http://stackoverflow.com/questions/3273350/jquery-click-pass-parameters-to-user-function
@@ -49,14 +59,14 @@ I finished the rework to make cookies work, but learned cookies have a size limi
 
 Modified jPlayer Blue Monday skin to incorporate disabled Play and Stop buttons for when the player has nothing loaded (when viewing help or about page). Added function to disable play menu options. It's used on all pages except 'transcript'. Added a pop-up help for remembered play check box, shouldn't be annoying. Started on an about page.
 
-Moved some files and folders into 'possible delete' folders. Most of them look like optionsl jPlayer stuff that is not being used. Will delete after some testing.
+Moved some files and folders into 'possible delete' folders. Most of them look like options jPlayer stuff that is not being used. Will delete after some testing.
 
 It looks like this commit might complete March's loose time table goal! 
 
 ===March 22, 2013===
 Today I realized the reason episode 2870 didn't show the transcript was because the layout is different--it is all out HTML5--than the other episodes (why did they have to change it now after all these years? lol). Episode 2871 goes back to the old table method, so my solution was to change get_episode_transcript.php to look for the new version and the old version. It's fixed for today. In light of this I should change the way the latest episode number is retrieved too. My first thought it to loop through the audio files and see which is the last one to be longer than 4 seconds.
 
-Started the major code rework to implement cookies. The current push is not useable (but the live demo still is).
+Started the major code rework to implement cookies. The current push is not usable (but the live demo still is).
 
 ===March 21, 2013===
 Realized implementing cookies is harder the way I setup the player, so I started reworking some code. Hopefully in a way that better follows the DRY principle. Started with a function that simply plays an episode based on the argument provided (don't know why I didn't think of that before), but still need to rework the rest of the play options to use it. 

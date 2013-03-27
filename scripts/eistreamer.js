@@ -274,3 +274,48 @@ $('.auto-option').click(function() {
 		$(this).addClass('auto-selected');
 	}
 });
+
+/*
+ * Resizes pictures that are wider than the screen after display.
+ */
+$(document).ajaxComplete(function() {
+    $('#transcript img').each(function() {
+        if($(this).width() > $('#transcript').width()) {
+            $(this).width('100%');
+            $(this).height('auto');
+        }
+    });
+});
+
+/*
+ * Resizes pictures that are wider than the screen on browser resize.
+ */
+$(window).resize(function() {
+    $('#transcript img').each(function() {
+        if($(this).width() > $('#transcript').width()) {
+            $(this).width('100%');
+            $(this).height('auto');
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
