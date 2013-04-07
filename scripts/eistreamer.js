@@ -3,6 +3,7 @@
  */
 
 var newest = '';
+var episodeDetails = [];
 var played = [];
 playedlistlen = 0;
 
@@ -157,7 +158,6 @@ function continiousPlay(type) {
 			if($('#trackCheckbox:checkbox').is(':checked')) { 
 				cookieUpdate(counter); //Update cookie and array.
 				counter = checkAgainstPlayedList(counter, type) //Move to next episode not found in array, in approprite direction.
-				//counter = checkAgainstPlayedList(counter); 
 			} else { //Remembered Played check box is unchecked just play an episode.
 				if(type == 'ascending') {
 					counter++; 
@@ -209,7 +209,7 @@ function checkAgainstPlayedList(epi, type) {
 				return checkAgainstPlayedList(epi - 1, 'descending');
 			}
 		}
-		return epi - 1; 
+		return epi; 
 	//Random episode
 	} else if(type == 'randomly') {
 		for(i = 0; i < playedlistlen; i++) {
@@ -287,19 +287,27 @@ $(document).ajaxComplete(function() {
     });
 });
 
-/*
- * Resizes pictures that are wider than the screen on browser resize.
- */
-$(window).resize(function() {
-    $('#transcript img').each(function() {
-        if($(this).width() > $('#transcript').width()) {
-            $(this).width('100%');
-            $(this).height('auto');
-        }
-    });
+$(document).ready(function() {
+    $.ajax({
+    url: "./scripts/keywords.txt",
+    dataType: "text",
+    success: function(response) {
+        
+        var array = response.split('\n');
+        
+        $.each(array, function(index, value) {
+            console.log(value);
+        });
+        
+        //console.log(array);
+        
+    },
+    error: function() {
+        $("#Loading").html('Oh noes, something has gone wrong!');
+    }
 });
 
-
+});
 
 
 

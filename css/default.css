@@ -286,3 +286,7 @@ footer {
 	/* W3C Markup, IE10 Release Preview */ 
 	background-image: linear-gradient(to bottom, #FFFFFF 0%, #CCCCCC 100%);
 }
+
+footer p {
+    padding: 10px 13px;
+}

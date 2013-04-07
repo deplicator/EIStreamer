@@ -36,7 +36,15 @@ if($begin == "") {
 
 //Remove click here for audio line.
 //adding a period leaves some "click here" messages behind, but without it some have a period left behind. Find better solution.
-$clickhereline = 'Click here for audio of Episode ' . $episodenum;  
+$clickhereline = 'Click here for audio of Episode ' . $episodenum . '.';
+if(strpos($lesshtml,$clickhereline)) {
+    $lesshtml = str_replace($clickhereline, '', $lesshtml);
+} else {
+    $clickhereline = 'Click here for audio of Episode ' . $episodenum;
+    $lesshtml = str_replace($clickhereline, '', $lesshtml);
+}
+
+
 $lesshtml = str_replace($clickhereline, '', $lesshtml);
 
 $lesshtml = convert_smart_quotes($lesshtml);
