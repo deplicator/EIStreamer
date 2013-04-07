@@ -45,7 +45,7 @@ Permission was given with the explicit direction this project can only pull from
 Fixed a bug with autoplay in reverse, it as skipping the latest episode.
 Fixed the "Some episodes have a period after the by line" bug with an if/else, not an eligant solution but it works.
 
-
+Started working on auto-creation of a keyword reference file using [http://www.uh.edu/engines/keywords.htm Keywords for The Engines of Our Ingenuity] as a source. Got far enough to display the current episodes keywords in the keyword section, but still needs work.
 
 Fix two bugs, then add more.
 * On some episodes blockquotes don't look right (283 and 282 for examples).

@@ -94,7 +94,7 @@
 			
 			<div id="keyword" class="playOptions"><!--keyword tag cloud could be cool here-->
 				<h3>Keywords</h3>
-				<div class="playOptions-inner">
+				<div id="keywords" class="playOptions-inner">
 					<p>future keyword section</p>
 				</div>
 			</div>

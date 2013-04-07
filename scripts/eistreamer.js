@@ -48,6 +48,7 @@ function updateDisplay(num) {
 	var nextepi = num + 1;
 	$('.jp-previous').attr('title', 'Episode ' + prevepi.toString());
 	$('.jp-next').attr('title', 'Episode ' + nextepi.toString());
+    $('#keywords').html(episodeDetails[num-1][2]);
 }
 
 /*
@@ -130,7 +131,7 @@ $('#randomly').click(function() {
 });
 
 /*
- * ContinuousPlay function will continuiously play as expected based on 
+ * ContinuousPlay function will continuously play as expected based on 
  * parameter.
  * @function
  * @param {string} type Can be 'ascending', 'descending', or 'randomly'.
@@ -157,7 +158,7 @@ function continiousPlay(type) {
 		ended: function() {
 			if($('#trackCheckbox:checkbox').is(':checked')) { 
 				cookieUpdate(counter); //Update cookie and array.
-				counter = checkAgainstPlayedList(counter, type) //Move to next episode not found in array, in approprite direction.
+				counter = checkAgainstPlayedList(counter, type) //Move to next episode not found in array, in appropriate direction.
 			} else { //Remembered Played check box is unchecked just play an episode.
 				if(type == 'ascending') {
 					counter++; 
@@ -185,7 +186,7 @@ function continiousPlay(type) {
 }
 
 /*
- * checkAgainstPlayedList function get's next episode, previous episode, or 
+ * checkAgainstPlayedList function gets next episode, previous episode, or 
  * random episode based on type parameter.
  *
  * @function
@@ -288,6 +289,7 @@ $(document).ajaxComplete(function() {
 });
 
 $(document).ready(function() {
+    //Creates keyword multi-dimensional array, maybe this should be an object?
     $.ajax({
     url: "./scripts/keywords.txt",
     dataType: "text",
@@ -296,11 +298,19 @@ $(document).ready(function() {
         var array = response.split('\n');
         
         $.each(array, function(index, value) {
-            console.log(value);
-        });
-        
-        //console.log(array);
-        
+            var separate = value.split("[");
+            
+            var episodeNumber = parseInt(separate[0].substring(0, separate[0].indexOf(" ")));
+            var episodeTitle = separate[0].substring(separate[0].indexOf(" ") + 1).slice(0, -1);
+            
+            var episodeKeywords = "[" + separate[1];
+            
+            var singleEpisode = [];
+            singleEpisode.push(episodeNumber);
+            singleEpisode.push(episodeTitle);
+            singleEpisode.push(episodeKeywords);
+            episodeDetails.push(singleEpisode);
+        });        
     },
     error: function() {
         $("#Loading").html('Oh noes, something has gone wrong!');
