@@ -41,6 +41,10 @@ Permission was given with the explicit direction this project can only pull from
 * Bitly links  for sharing episodes.
 
 ==Work Log==
+===April 19, 2013===
+Fixed Uncaught TypeError: Cannot read property '2' of undefined eistreamer.js:51 on first page load.
+
+
 ===April 6, 2013===
 Fixed a bug with autoplay in reverse, it as skipping the latest episode.
 Fixed the "Some episodes have a period after the by line" bug with an if/else, not an eligant solution but it works.
