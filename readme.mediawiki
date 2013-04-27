@@ -43,7 +43,7 @@ Permission was given with the explicit direction this project can only pull from
 
 ==Work Log==
 ===April 27, 2013===
-Got a "proof of concept" search by keyword page in place.
+Got a "proof of concept" search by keyword page in place. Found more bugs than fixed today.
 
 
 ===April 19, 2013===
