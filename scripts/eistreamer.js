@@ -291,7 +291,7 @@ $(document).ready(function() {
             singleEpisode.push(episodeTitle);
             singleEpisode.push(episodeKeywords);
             episodeDetails.push(singleEpisode);
-        });        
+        });
     },
     error: function() {
         $("#Loading").html('Oh noes, something has gone wrong!');
@@ -318,7 +318,10 @@ function updateDisplay(num) {
     var nextepi = num + 1;
     $('.jp-previous').attr('title', 'Episode ' + prevepi.toString());
     $('.jp-next').attr('title', 'Episode ' + nextepi.toString());
-    $('#keywords').html(episodeDetails[num-1][2]);
+    
+    if(episodeDetails[num-1]) {
+        $('#keywords').html(episodeDetails[num-1][2]);
+    }
 }
 
 

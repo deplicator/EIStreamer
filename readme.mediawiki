@@ -34,6 +34,7 @@ Permission was given with the explicit direction this project can only pull from
 * New fixed player/menu is not accessable on browser windows shorter than 587px, only a real problem on mobile devices but should be addressed.
 * On occasion the main engine's page is updated and the latest episode has an audio file, but the transcript isn't available yet.
 * Cookie size limit is reached at about 690 episodes remembered.
+* Keyword section doesn't display keywords when linking to episode through '?epi='
 
 ===Would be neat===
 * Have a "available in Spanish" link for episodes that have a Spanish option.
@@ -41,6 +42,10 @@ Permission was given with the explicit direction this project can only pull from
 * Bitly links  for sharing episodes.
 
 ==Work Log==
+===April 27, 2013===
+Got a "proof of concept" search by keyword page in place.
+
+
 ===April 19, 2013===
 Fixed Uncaught TypeError: Cannot read property '2' of undefined eistreamer.js:51 on first page load.
 

@@ -1,0 +1,120 @@
+<style>
+
+#instr {
+    float: left;
+    width: 40%;
+}
+
+#keywordlist {
+    float: right;
+    width: 50%;
+}
+
+#showall {
+    color: blue;
+    cursor: hand;
+    text-decoration: underline;
+}
+
+</style>
+    <div id="instr">
+        <p>This feature is still being tested and implemented, but it's fun.</p>
+        <p>Type a keyword to search for in the box (not case sensitive). The easiet way to use this right now is to search and open new episodes up in another tab.</p>
+        <p>Can't think of a keyword, <span id="showall" >Show a complete list</span>. Takes a moment to load.</p>
+        <input id="search" type="text">
+        <div id="list"></div>
+    </div>
+
+<div id="keywordlist"></div>
+
+<script src="scripts/jquery.min.js"></script><!--jQuery 1.9.1-->
+<script>
+var episodeDetails = [];
+var allkeywords = [];
+var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
+
+//TextBox Input
+$('#search').keyup(function() {
+    $('#list').html("");
+    showepisodesbysearch($('#search').val().toLowerCase());
+});
+
+$(document).ready(function() {
+    //Creates keyword multi-dimensional array, maybe this should be an object?
+    $.ajax({
+    url: "./scripts/keywords.txt",
+    dataType: "text",
+    success: function(response) {
+        //console.log(response);
+        
+        var array = response.split('\n');
+
+        $.each(array, function(index, value) {
+            var separate = value.split("[");
+            
+            var episodeNumber = parseInt(separate[0].substring(0, separate[0].indexOf(" ")));
+            var episodeTitle = separate[0].substring(separate[0].indexOf(" ") + 1).slice(0, -1);
+            var temp = separate[1].toLowerCase();
+            var listkeywords = temp.slice(0, -1);
+            
+            var singleEpisode = [];
+            singleEpisode.push(episodeNumber);
+            singleEpisode.push(episodeTitle);
+            singleEpisode.push(listkeywords.split(", "));
+            episodeDetails.push(singleEpisode);
+        });
+    },
+    error: function() {
+        $("#Loading").html('Oh noes, something has gone wrong!');
+    }
+    });
+
+});
+
+
+function showepisodesbysearch(term) {
+    for(i = 0; i < episodeDetails.length; i++) {
+        for(j = 0; j < episodeDetails[i][2].length; j++) {
+            if(episodeDetails[i][2][j] == term) {
+                $('#list').append('<a href="' + site + '/?epi=' + episodeDetails[i][0] + '">' + episodeDetails[i][0] + '  ' + episodeDetails[i][1] + '</a><br>');
+            }
+        }
+    }
+}
+
+Array.prototype.unique= function() {
+    var unique= [];
+    for (var i = 0; i < this.length; i += 1) {
+        if (unique.indexOf(this[i]) == -1) {
+            unique.push(this[i])
+        }
+    }
+    return unique;
+};
+
+function makekeywordlist() {
+    for(i = 0; i < episodeDetails.length; i++) {
+        for(j = 0; j < episodeDetails[i][2].length; j++) {
+            allkeywords.push(episodeDetails[i][2][j]);
+        }
+    }
+    allkeywords = allkeywords.unique();
+    
+    for(i = 0; i < allkeywords.length; i++) {
+        $('#keywordlist').append("\"" + allkeywords[i] + "\", ");
+    }
+}
+
+$('#showall').click(function() {
+    makekeywordlist();
+});
+
+</script>
+
+
+
+
+
+
+
+
